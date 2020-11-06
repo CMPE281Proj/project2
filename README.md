@@ -3,7 +3,7 @@ Set up amplify react app
 -	Clone the repo using ‘git clone <git_url>’
 -	Navigate to the cloned repo , open the code editor you chose to use
 -	npm install -g @aws-amplify/cli
--	Create react app within the cloned folder using ‘npx create-react-app’ . (takes time)
+-	Create react app within the cloned folder using ‘npx create-react-app .’  (takes time)
 -	Add nodes modules folder to .gitignore since it is huge 
 -	Set up amplify using ‘amplify configure’
     -	Press enter to continue
