@@ -1,4 +1,4 @@
-#set up ap
+#Set up amplify react app  
 
 -	Clone the repo using ‘git clone <git_url>’
 -	Navigate to the cloned repo , open the code editor you chose to use
