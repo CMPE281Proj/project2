@@ -14,9 +14,12 @@ Set up amplify react app
     -	Download the credentials.csv that holds the access and secret key of the new user (once closed , you cannot get the details again)
     -	Go back to the editor and specify access and secret key in the terminal
     -	Set profile name for the user created 
-    #You are going to use this user as admin instead of root user.
+    
+    You are going to use this user as admin instead of root user.
+    
     If you want to login to the user created above, open the credentials file you downloaded.
     Use the console log in link for iam user login and proceed with credentials.
+    
 -	Initialize Amplify on the repo using ‘amplify init’
     -	Set name of the project 
     -	Name of the environment:dev (DEFAULT)
