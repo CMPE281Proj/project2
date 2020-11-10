@@ -39,3 +39,6 @@ Set up amplify react app
 -	npm install –save aws-amplify @aws-amplify/ui-react
 - npm start
 
+- Commit Description
+    - Created Header Component using material ui having support for Desktop and Mobile Layout
+    - Created Navigation in Header using React Router
