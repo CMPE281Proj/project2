@@ -36,7 +36,7 @@ Set up amplify react app
     -	User should be able to login with : Email 
     -	Configure advanced settings : No 
 -	Update ‘aws-exports.js’ using with the user pool details using ‘amplify push’ , provide ‘Y’ when prompted
--	npm install –save aws-amplify @aws-amplify/ui-react
+-	npm install --save aws-amplify @aws-amplify/ui-react
 - npm start
 
 - Commit Description
