@@ -8,6 +8,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import SearchIcon from '@material-ui/icons/Search';
 import MenuItem from '@material-ui/core/MenuItem';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
+import PersonIcon from '@material-ui/icons/Person';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,23 +24,31 @@ export const DesktopAppBar = (props) => {
 
     return (
         <div className={classes.sectionDesktop}>
-            <Link to="/findJobs" style={{ textDecoration: 'none', display: 'block', color:"inherit" }}>
+         <Link to="/signIn" style={{ textDecoration: 'none', display: 'block', color:"inherit" }}>
+              <MenuItem>
+                <IconButton aria-label="search" color="inherit">
+                <PersonIcon/>
+                </IconButton>
+                <p>Sign In</p>
+              </MenuItem>
+            </Link>
+            <Link to="/findChef" style={{ textDecoration: 'none', display: 'block', color:"inherit" }}>
               <MenuItem>
                 <IconButton aria-label="search" color="inherit">
                   <SearchIcon />
                 </IconButton>
-                <p>Find Jobs</p>
+                <p>Find Chef</p>
               </MenuItem>
             </Link>
-            <Link to="/myJobs" style={{ textDecoration: 'none', display: 'block', color:"inherit" }}>
+            <Link to="/history" style={{ textDecoration: 'none', display: 'block', color:"inherit" }}>
               <MenuItem>
                 <IconButton aria-label="bookmark" color="inherit">
                   <BookmarkIcon />
                 </IconButton>
-                <p>My Jobs</p>
+                <p>History</p>
               </MenuItem>
             </Link>
-            <Link to="/jobAlerts" style={{ textDecoration: 'none', display: 'block', color:"inherit" }}>
+            {/* <Link to="/jobAlerts" style={{ textDecoration: 'none', display: 'block', color:"inherit" }}>
               <MenuItem>
                 <IconButton aria-label="show 16 new notifications" color="inherit">
                   <Badge badgeContent={16} color="secondary">
@@ -48,7 +57,7 @@ export const DesktopAppBar = (props) => {
                 </IconButton>
                 <p>Job Alerts</p>
               </MenuItem>
-            </Link>
+            </Link> */}
             <MenuItem onClick={props.setAnchorEl}>
               <IconButton
                 aria-label="account of current user"
