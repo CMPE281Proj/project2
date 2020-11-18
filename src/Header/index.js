@@ -91,7 +91,7 @@ export const Header = () => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            My Job Portal
+            My Chef
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
