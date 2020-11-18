@@ -50,7 +50,7 @@ o	Popup form to edit the booking details -> Payment Is successful (pop up) -> re
 •	Footer :
 o	Contact us – Chat bot (aws lex)
 
-Tables 
+#Tables 
 	Record recount 
 		Chef : 10-15
 		Customers:
