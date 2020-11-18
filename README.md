@@ -42,3 +42,5 @@ Set up amplify react app
 - Commit Description
     - Created Header Component using material ui having support for Desktop and Mobile Layout
     - Created Navigation in Header using React Router
+    - Created FindAChef Component
+    - Created FilterPanel Component
