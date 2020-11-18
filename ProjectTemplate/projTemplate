@@ -110,3 +110,6 @@ Services :
 •	Lex – chatbot 
 
 
+##Mamatha 
+-Added 2 folders in src folder : HomePage and SignIn with respective index.js files
+-changed the website icon 
