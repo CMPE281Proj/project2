@@ -1,0 +1,112 @@
+•	Welcome page – UI , Content  
+•	Search – UI , DEFAULT API based on location(max dist : 20 miles )
+
+•	api gateway , lambda, dynamodb
+
+1 Api to get user details from db
+2 Api to get profile picture from s3
+o	Filter based on below Criteria	:  API 
+	Location (zip code)
+	Date
+	Number of people 
+	Cuisine 
+	Slot 
+	Price /hr 
+	Rating 
+	Experience
+o	Display chef data (recommendations)	
+	Name 
+	Profile pic
+	Cuisine
+	Rating 
+	Experience 
+
+o	Functionality : Select a profile and Navigate to the chef profile
+•	Chef profile page – UI
+o	3 Api to fetch chef info 
+o	Api to fetch slots 
+o	4 Api to fetch review 
+o	5 Api to Fetch Images from s3
+	Name 
+	Profile pic (s3)
+	Cuisine
+	Rating 
+	Experience 
+	Photos (s3)
+	Reviews 
+	Availability Calendar (combo to select the slot :  date , slot (B,L,D))
+
+•	Customer Login 
+o	Profile (api to get the customer data from db)
+o	History (api to get the history data from  db)
+	Rating, review (api to post data into db)
+o	Search (use existing search api)
+o	Signout (redirect to home page)
+
+•	Confirm chef form – 
+o	API to post the customer booking details and update the chef availability details 
+o	Popup form to edit the booking details -> Payment Is successful (pop up) -> redirect to booking history form
+•	Become a chef login – (on hold)
+•	Footer :
+o	Contact us – Chat bot (aws lex)
+
+#Tables 
+	Record recount 
+		Chef : 10-15
+		Customers:
+		Review : 5 
+Pictures : 5-20/chef
+
+
+
+•	ChefTable
+
+o	Email (key)
+o	Name 
+o	Location
+o	Price
+o	Cuisine
+o	Slot
+o	OverallRating 
+o	Experience 
+o	ZipCode
+
+•	ChefAvailabilityTable
+o	ChefName (ChefTable)
+o	Date 
+o	Slot
+•	CustTable
+o	CustName
+o	PhoneNumber 
+o	Email 
+o	Address 
+•	MyBookingsTable(History of the chefs you booked in the past)
+o	CustName (CustTable)
+o	ChefName (ChefTable)
+o	Slot
+o	Date 
+o	Cuisine
+o	People
+o	TotalPrice
+o	Rating (RatingsTable)
+•	BillingTable (1 person for each item)
+o	Slot (breakfast, lunch , dinner,etc)
+o	Cuisine (Maharashtra, Andhra,etc)
+o	Price
+•	RatingsTable
+o	CustName (CustTable)
+o	ChefName (ChefTable)
+o	Comment
+o	Rating
+
+Services :
+•	S3: Store pictures 
+•	Dynamo DB : to store the data
+•	Cognito : for authentication
+•	Amplify 
+•	API gateway
+•	Lambda 
+•	SNS 
+•	Lex – chatbot 
+
+
