@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
 import { FilterPanel } from './FilterPanel';
+import { ChefList } from './ChefList';
 
 export const FindAChef = () => {
     const useStyles = makeStyles((theme) => ({
@@ -20,7 +21,7 @@ export const FindAChef = () => {
     }));
     const classes = useStyles();
     return (
-        <Container maxWidth={false} className={classes.search}>
+        <Container className={classes.search}>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={3}>
                     <Paper className={classes.paper}>
@@ -28,7 +29,9 @@ export const FindAChef = () => {
                     </Paper>
                 </Grid>
                 <Grid item xs={12} sm={9}>
-                    <Paper className={classes.paper}>xs=12 sm=6</Paper>
+                    <Paper className={classes.paper}>
+                        <ChefList />
+                    </Paper>
                 </Grid>
             </Grid>
         </Container>

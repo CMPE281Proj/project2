@@ -114,4 +114,10 @@ Services :
 -Added 2 folders in src folder : HomePage and SignIn with respective index.js files
 -changed the website icon 
 
+##Prajakta
+- Created Header Component using material ui having support for Desktop and Mobile Layout
+- Created Navigation in Header using React Router
+- Created FindAChef Component
+- Created FilterPanel Component
+- Created ChefList Component
 

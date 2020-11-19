@@ -38,9 +38,3 @@ Set up amplify react app
 -	Update ‘aws-exports.js’ using with the user pool details using ‘amplify push’ , provide ‘Y’ when prompted
 -	npm install --save aws-amplify @aws-amplify/ui-react
 - npm start
-
-- Commit Description
-    - Created Header Component using material ui having support for Desktop and Mobile Layout
-    - Created Navigation in Header using React Router
-    - Created FindAChef Component
-    - Created FilterPanel Component
