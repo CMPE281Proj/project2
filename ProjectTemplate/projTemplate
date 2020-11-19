@@ -63,23 +63,23 @@ Pictures : 5-20/chef
 
 o	Email (key)
 o	Name 
-o	Location
 o	Price
 o	Cuisine
-o	Slot
 o	OverallRating 
 o	Experience 
 o	ZipCode
 
-•	ChefAvailabilityTable
+•	ChefSlotsTable
 o	ChefName (ChefTable)
 o	Date 
 o	Slot
+
 •	CustTable
 o	CustName
 o	PhoneNumber 
 o	Email 
 o	Address 
+
 •	MyBookingsTable(History of the chefs you booked in the past)
 o	CustName (CustTable)
 o	ChefName (ChefTable)
@@ -89,10 +89,12 @@ o	Cuisine
 o	People
 o	TotalPrice
 o	Rating (RatingsTable)
+
 •	BillingTable (1 person for each item)
 o	Slot (breakfast, lunch , dinner,etc)
 o	Cuisine (Maharashtra, Andhra,etc)
 o	Price
+
 •	RatingsTable
 o	CustName (CustTable)
 o	ChefName (ChefTable)
@@ -120,9 +122,4 @@ Services :
 - Created FindAChef Component
 - Created FilterPanel Component
 - Created ChefList Component
-
-##Srujana
-- Created HomePage using material ui
-
-
 
