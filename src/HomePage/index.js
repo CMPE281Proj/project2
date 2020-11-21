@@ -4,7 +4,7 @@ import { CssBaseline } from '@material-ui/core';
 import HomeText from './hometext';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  homepage: {
     minHeight: '100vh',
     backgroundImage: `url(${process.env.PUBLIC_URL + '/assets/background1.jpg'})`,
     backgroundRepeat: 'no-repeat',
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 export default function HomePage() {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <div className={classes.homepage}>
       <CssBaseline />
       <HomeText/>
   

@@ -1,48 +1,63 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  home: {
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
     height: '80vh',
     fontFamily: 'Nunito',
-    fontSize: '30px',
+    fontSize: '2em',
   },
 
-  colorText: {
-    color: 'red',
-  },
-  container: {
+  
+  
+  homecontainer: {
     textAlign: 'center',
+  },
+
+  hometitle:{
+    fontSize: '1.3em'
   },
   
   button: {
-    fontSize: '15px'
+    fontSize: '1em'
   }
   
 }));
 
 
-export default function Header1() {
+export default function HomeText() {
   const classes = useStyles();
   
   return (
-    <div className={classes.root} id="header">
-        <div className={classes.container}>
-          <h1 className={classes.title}>
-            Find Your <br />
-            <span className={classes.colorText}> CHEF </span>
+    <div className={classes.home} >
+        <div className={classes.homecontainer}>
+          <h1 className={classes.hometitle}>
+            <div >Your Favourite Recipes, </div>
+            <div> By Your Favourite Chefs </div>
+            <div>In your Kitchen </div>
+          
           </h1>
-            <div className={classes.button}>
-            <Button target="_blank" href="http://localhost:3000/findChef" color="secondary" variant="contained"> Find Chef</Button>
-            </div>
+       
+            <Link to="/findchef" 
+             style={{ textDecoration: 'none', display: 'block', color:"primary", variant:"contained"  }}>
+                <div>
+                <Button target="link" color="primary" variant='contained'>
+                <p>Find My Chef</p>
+                </Button>
+                </div>
+                
+            
+            </Link>
         </div>
       
     </div>
   );
 }
+
