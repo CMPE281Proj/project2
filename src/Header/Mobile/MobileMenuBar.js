@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import SearchIcon from '@material-ui/icons/Search';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import PersonIcon from '@material-ui/icons/Person';

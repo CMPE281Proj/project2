@@ -129,4 +129,8 @@ Services :
 		- Review booking information
 		- add payment details
 
-
+##Prajakta
+- Added UI for Chef Details page
+		- Chef Profile Component
+		- ChefPhotoReviews Component
+		- ChefServices Component
