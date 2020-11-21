@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Amplify from 'aws-amplify';
 import Container from '@material-ui/core/Container';
@@ -10,6 +9,7 @@ import Header from './Header';
 import SignIn from './SignIn';
 import { FindAChef } from './FindAChef';
 import BookChef from './BookChef';
+import { ChefDetails } from './ChefDetails';
 
 Amplify.configure(awsconfig)
 
@@ -24,6 +24,8 @@ function App() {
             <Route path='/signIn' exact component={SignIn} />
             <Route path='/findChef' exact component={FindAChef} />
             <Route path='/bookChef' exact component={BookChef} />
+            <Route path='/chefProfile/bookChef/:chefId' component={BookChef} />
+            <Route path='/chefProfile/:chefId' exact component={ChefDetails} />
           </Switch>
         </Container>
       </div>

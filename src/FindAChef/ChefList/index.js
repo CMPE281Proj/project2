@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -46,7 +47,12 @@ export const ChefList = () => {
                 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
         },
     ];
-
+    const getpathQuery = (chefId) => {
+        const pathQuery = "chefProfile/" + chefId;
+        return {
+            pathname: pathQuery
+        };
+    };
     return (
         <Container maxWidth={false}>
             {chefList.map((chef, index) => (
@@ -62,7 +68,9 @@ export const ChefList = () => {
                         </Grid>
                         <Grid item xs={12} sm={9} className={classes.chefContent}>
                             <div>
-                                <h4 className={classes.chefName}>{chef.chefName}</h4>
+                                <Link to={getpathQuery(chef.chefName)} style={{ textDecoration: 'none', display: 'block', color:"inherit" }}>
+                                    <h4 className={classes.chefName}>{chef.chefName}</h4>
+                                </Link>
                                 <div className={classes.locationPrice}>
                                     <span className={classes.chefLocation}>{chef.address}</span>
                                     <div>
