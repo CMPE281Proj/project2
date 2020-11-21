@@ -123,3 +123,10 @@ Services :
 - Created FilterPanel Component
 - Created ChefList Component
 
+##Mamatha
+- Added UI for booking process with hard-coded data 
+		- Editing Booking information 
+		- Review booking information
+		- add payment details
+
+

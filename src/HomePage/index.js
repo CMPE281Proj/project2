@@ -1,9 +1,24 @@
-import React from 'react'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { CssBaseline } from '@material-ui/core';
+import HomeText from './hometext';
 
-const HomePage = () => {
+const useStyles = makeStyles((theme) => ({
+  homepage: {
+    minHeight: '100vh',
+    backgroundImage: `url(${process.env.PUBLIC_URL + '/assets/background1.jpg'})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+ 
+   },
+}));
+export default function HomePage() {
+  const classes = useStyles();
   return (
-    <div>Home Page</div>
-  )
+    <div className={classes.homepage}>
+      <CssBaseline />
+      <HomeText/>
+  
+    </div>
+  );
 }
-
-export default HomePage;
