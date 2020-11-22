@@ -10,6 +10,9 @@ import SignIn from './SignIn';
 import { FindAChef } from './FindAChef';
 import BookChef from './BookChef';
 import { ChefDetails } from './ChefDetails';
+import BookingHistory from './BookingHistory';
+import SignUp from './SignUp';
+import ConfirmSignUp from './SignUp/ConfirmSignUp';
 
 Amplify.configure(awsconfig)
 
@@ -26,6 +29,10 @@ function App() {
             <Route path='/bookChef' exact component={BookChef} />
             <Route path='/chefProfile/bookChef/:chefId' component={BookChef} />
             <Route path='/chefProfile/:chefId' exact component={ChefDetails} />
+            <Route path='/bookingHistory' exact component={BookingHistory} />
+            <Route path='/signUp' exact component={SignUp} />
+            {/* <Route path='/confirmSignUp' exact component={ConfirmSignUp} /> */}
+            <Route path='/confirmSignUp/:email' exact component={ConfirmSignUp} />
           </Switch>
         </Container>
       </div>
