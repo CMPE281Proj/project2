@@ -58,13 +58,13 @@ export const ChefReceipes = () => {
       title: 'Samosa',
     }
   ]
-  
+
   return (
     <div className={classes.chefReceipes}>
       <GridList cellHeight={180} className={classes.chefReceipesGridList}>
         <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
           <ListSubheader component="div" className={classes.receipes}>
-            <AddAPhotoIcon/>
+            <AddAPhotoIcon />
             <span className={classes.receipesText}>Photos</span>
           </ListSubheader>
         </GridListTile>

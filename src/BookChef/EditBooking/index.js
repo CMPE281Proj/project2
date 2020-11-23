@@ -48,7 +48,6 @@ const EditHistory = () => {
             id='personCount'
             name='personCount'
             label='No. of People'
-            value={people}
             onChange={(e, people) => setPeople(people)}
           />
         </Grid>
@@ -57,7 +56,6 @@ const EditHistory = () => {
             id='NumOfHours'
             name='NumOfHours'
             label='No. of Hours'
-            value={NumOfHours}
             onChange={(e, NumOfHours) => setNumOfHours(NumOfHours)}
           />
         </Grid>
@@ -66,11 +64,7 @@ const EditHistory = () => {
             id='date'
             type='date'
             defaultValue='2017-05-24'
-            value={date}
             onChange={(e, date) => setSelectedDate(date)}
-          // InputLabelProps={{
-          //   shrink: true
-          // }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>

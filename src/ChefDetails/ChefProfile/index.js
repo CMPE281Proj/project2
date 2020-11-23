@@ -13,7 +13,7 @@ export const ChefProfile = (props) => {
   const getpathQuery = (chefId) => {
     const pathQuery = "bookChef/" + chefId;
     return {
-        pathname: pathQuery
+      pathname: pathQuery
     };
   };
   return (
@@ -32,15 +32,15 @@ export const ChefProfile = (props) => {
           <h1>Natasha</h1>
           <h3 className={classes.chefProfileAddress}>West San Jose, San Jose</h3>
           <Rating
-              value={2}
-              className={classes.chefRating}
-              name="Chef Rating"
-              size="medium"
+            value={2}
+            className={classes.chefRating}
+            name="Chef Rating"
+            size="medium"
           />
           <span className={classes.chefProfileInfoReviewCount}>(20)</span>
           <div className={classes.chefProfileInfoButtons}>
             <span className={classes.chefProfileFav}>Add To Favourites</span>
-            <Link to={getpathQuery("Natasha")} style={{ textDecoration: 'none', display: 'block', color:"inherit" }}>
+            <Link to={getpathQuery("Natasha")} style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>
               <Button variant="contained" color="primary">
                 Book a Slot
               </Button>
@@ -50,4 +50,5 @@ export const ChefProfile = (props) => {
       </Grid>
     </Container>
   )
-;}
+    ;
+}

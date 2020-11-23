@@ -10,7 +10,7 @@ import ConfirmBooking from './ReviewBooking';
 import PaymentForm from './PaymentForm';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  bookChef: {
     width: '100%'
   },
   button: {
