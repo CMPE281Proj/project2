@@ -34,7 +34,7 @@ export const FilterPanel = (props) => {
         }
     };
     const cuisinesList = [
-        'North Indian',
+        'North-Indian',
         'South Indian',
         'Maharashtrian',
         'Rajasthani',
@@ -42,8 +42,8 @@ export const FilterPanel = (props) => {
     ];
     const [location, setLocation] = React.useState('');
     const [people, setPeople] = React.useState('');
-    const [slot, setSlot] = React.useState('');
-    const [selectedDate, setSelectedDate] = React.useState(new Date());
+    const [slot, setSlot] = React.useState([]);
+    const [selectedDate, setSelectedDate] = React.useState();
     const [cuisine, setCuisine] = React.useState([]);
     const [price, setPriceValue] = React.useState([0, 50]);
     const [rating, setRating] = React.useState(2);
@@ -52,35 +52,20 @@ export const FilterPanel = (props) => {
     const serchClick = () => {
         const filterQuery = {};
 
-        // Add to FilterQuery only if the user specifies a value, else ignore
-        if (location !== '') {
-            filterQuery.location = location;
-        }
-        if (selectedDate !== null) {
-            filterQuery.date = selectedDate;
-        }
-        if (people !== '') {
-            filterQuery.people = people;
-        }
-        if (cuisine.length !== 0) {
-            filterQuery.cuisine = cuisine;
-        }
-        if (slot !== '') {
-            filterQuery.slot = slot;
-        }
-        if (price !== null) {
-            filterQuery.price = price;
-        }
-        if (rating !== 0) {
-            filterQuery.rating = rating;
-        }
-        if (experience !== '') {
-            filterQuery.experience = experience;
-        }
+        filterQuery.Location = location !== '' ? location : '';
+        filterQuery.Date = selectedDate != null ? selectedDate : '';
+        filterQuery.People = people !== '' ? people : '';
 
+        const formattedCuisine = cuisine.toString();
+        filterQuery.Cuisine = formattedCuisine !== '' ? formattedCuisine : '';
+        
+        filterQuery.Slots = slot.length !== 0 ? slot : '';
+        filterQuery.Price = price.length > 0 ? price.map(String) : '';
+        filterQuery.Rating = rating !== 0 ? rating.toString() : '';
+        filterQuery.Experience = experience !== '' ? experience : '';
         console.log('filterQuery', filterQuery);
 
-        GetChefDataByCriteria().then(function (response) {
+        GetChefDataByCriteria(filterQuery).then(function (response) {
             props.onSearch(response);
             console.log('GetChefDataByCriteria', response);
         })
@@ -141,7 +126,7 @@ export const FilterPanel = (props) => {
             <FormControl className={classes.formControl}>
                 <InputLabel shrink className={classes.selectBoxInput}>
                     Cuisine
-        </InputLabel>
+                </InputLabel>
                 <Select
                     multiple
                     value={cuisine}
@@ -163,13 +148,34 @@ export const FilterPanel = (props) => {
             <FormControl className={classes.formControl}>
                 <InputLabel shrink className={classes.selectBoxInput}>
                     Slot
-        </InputLabel>
+                </InputLabel>
+                <Select
+                    multiple
+                    value={slot}
+                    onChange={(event) => setSlot(event.target.value)}
+                    input={<Input />}
+                    renderValue={(selected) => selected.join(', ')}
+                    MenuProps={MenuProps}
+                >
+                    {["Breakfast", "Lunch", "Dinner"].map((name) => (
+                        <MenuItem key={name} value={name}>
+                            <Checkbox checked={slot.indexOf(name) > -1} />
+                            <ListItemText primary={name} />
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+
+            {/* <FormControl className={classes.formControl}>
+                <InputLabel shrink className={classes.selectBoxInput}>
+                    Slot
+                </InputLabel>
                 <Select value={slot} onChange={(event) => setSlot(event.target.value)}>
                     <MenuItem value='breakfast'>Breakfast</MenuItem>
                     <MenuItem value='lunch'>Lunch</MenuItem>
                     <MenuItem value='dinner'>Dinner</MenuItem>
                 </Select>
-            </FormControl>
+            </FormControl> */}
 
             {/* Price Input Field */}
             <div className={classes.sliderWrap}>

@@ -2,16 +2,16 @@ import axios from "axios";
 
 const GetChefDataByCriteria = (event) => {
   return new Promise((resolve, reject) => {
-    axios.put("https://8pw4ve3xvb.execute-api.us-east-1.amazonaws.com/dev",
-      {
-        // fieldValues,
-        Rating: '3', //change to Rating : event.target.Rating or pass values to the function and use the same.
-        Cuisine: 'North-Indian',
-        Price: ['0', '21'],
-        Date: '11/23/2020',
-        Slots: ['Lunch', 'Dinner'],
-        Experience: ''
-      })
+    axios.put("https://8pw4ve3xvb.execute-api.us-east-1.amazonaws.com/dev", event
+      // {
+      //   Rating: '3', //change to Rating : event.target.Rating or pass values to the function and use the same.
+      //   Cuisine: 'North-Indian',
+      //   Price: ['0', '21'],
+      //   Date: '11/23/2020',
+      //   Slots: ['Lunch', 'Dinner'],
+      //   Experience: ''
+      // }
+      )
       .then(function (response) {
         const filteredChefData = [];
         if (response.data.length > 0) {
