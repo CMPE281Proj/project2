@@ -19,9 +19,9 @@ import Rating from '@material-ui/lab/Rating';
 import Button from '@material-ui/core/Button';
 
 import { useStyles } from './style';
-import { SignalCellularNullOutlined } from '@material-ui/icons';
+import GetChefDataByCriteria from './GetChefDataByCriteria';
 
-export const FilterPanel = () => {
+export const FilterPanel = (props) => {
     const classes = useStyles();
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
@@ -79,6 +79,14 @@ export const FilterPanel = () => {
         }
 
         console.log('filterQuery', filterQuery);
+
+        GetChefDataByCriteria().then(function (response) {
+            props.onSearch(response);
+            console.log('GetChefDataByCriteria', response);
+        })
+        .catch(function (error) {
+            console.log('GetChefDataByCriteria error', error);
+        }); 
     };
 
     return (

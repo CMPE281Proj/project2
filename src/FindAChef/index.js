@@ -20,17 +20,19 @@ export const FindAChef = () => {
         },
     }));
     const classes = useStyles();
+    const [filteredChefData, setFilteredChefData] = React.useState([]);
+    
     return (
         <Container className={classes.search}>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={3}>
                     <Paper className={classes.paper}>
-                        <FilterPanel />
+                        <FilterPanel onSearch={(data) => setFilteredChefData(data)}/>
                     </Paper>
                 </Grid>
                 <Grid item xs={12} sm={9}>
                     <Paper className={classes.paper}>
-                        <ChefList />
+                        <ChefList filteredChefData={filteredChefData}/>
                     </Paper>
                 </Grid>
             </Grid>
