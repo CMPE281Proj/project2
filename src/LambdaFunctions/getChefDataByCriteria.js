@@ -1,3 +1,4 @@
+// Invoke url : https://79p73jdiu0.execute-api.us-east-1.amazonaws.com/dev
 var AWS = require('aws-sdk');
 AWS.config.update({ region: 'us-east-1' });
 
