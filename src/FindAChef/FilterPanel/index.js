@@ -145,7 +145,7 @@ export const FilterPanel = (props) => {
             </FormControl>
 
             {/* Slot Input Field */}
-            <FormControl className={classes.formControl}>
+            {selectedDate != null ? <FormControl className={classes.formControl}>
                 <InputLabel shrink className={classes.selectBoxInput}>
                     Slot
                 </InputLabel>
@@ -164,7 +164,7 @@ export const FilterPanel = (props) => {
                         </MenuItem>
                     ))}
                 </Select>
-            </FormControl>
+            </FormControl> : null }
 
             {/* <FormControl className={classes.formControl}>
                 <InputLabel shrink className={classes.selectBoxInput}>
