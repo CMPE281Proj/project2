@@ -1,8 +1,8 @@
 import React from "react";
 
 import { ChefReceipes } from './ChefReceipes';
-export const ChefPhotosReviews = () => {
+export const ChefPhotosReviews = (props) => {
   return (
-    <ChefReceipes />
+    <ChefReceipes chefId={props.chefId}/>
   );
 }

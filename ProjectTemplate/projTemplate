@@ -134,3 +134,9 @@ Services :
 		- Chef Profile Component
 		- ChefPhotoReviews Component
 		- ChefServices Component
+
+##Prajakta
+- Added UI Axios calls for service integration
+		- Chef List Default Search Integration
+		- Integration of profile and portfolio images
+		- Integration of Chef Details

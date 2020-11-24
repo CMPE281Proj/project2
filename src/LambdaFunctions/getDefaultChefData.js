@@ -1,4 +1,4 @@
-
+// Invoke url : https://7w0xdfcdpl.execute-api.us-east-1.amazonaws.com/getDefaultChefData
 var AWS = require('aws-sdk');
 AWS.config.update({ region: 'us-east-1' });
 
