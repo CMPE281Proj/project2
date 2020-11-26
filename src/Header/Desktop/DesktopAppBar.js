@@ -56,6 +56,14 @@ export const DesktopAppBar = (props) => {
           <p>History</p>
         </MenuItem>
       </Link>
+      <Link to="/lexbot" style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>
+        <MenuItem>
+          <IconButton aria-label="bookmark" color="inherit">
+            <BookmarkIcon />
+          </IconButton>
+          <p>Chat</p>
+        </MenuItem>
+      </Link>
       {/* <Link to="/jobAlerts" style={{ textDecoration: 'none', display: 'block', color:"inherit" }}>
               <MenuItem>
                 <IconButton aria-label="show 16 new notifications" color="inherit">

@@ -13,8 +13,9 @@ import { ChefDetails } from './ChefDetails';
 import BookingHistory from './BookingHistory';
 import SignUp from './SignUp';
 import ConfirmSignUp from './SignUp/ConfirmSignUp';
+import Lexbot from './Lexbot';
 
-Amplify.configure(awsconfig)
+Amplify.configure(awsconfig);
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path='/signUp' exact component={SignUp} />
             {/* <Route path='/confirmSignUp' exact component={ConfirmSignUp} /> */}
             <Route path='/confirmSignUp/:email' exact component={ConfirmSignUp} />
+            <Route path='/lexbot' exact component={Lexbot} />
           </Switch>
         </Container>
       </div>
