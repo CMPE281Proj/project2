@@ -7,15 +7,15 @@ const greetUser = require('./GreetUser');
 module.exports = function (intentRequest, callback) {
     console.log(`dispatch userid = ${intentRequest.userid}, intentName=${intentRequest.currentIntent.name}`);
     const intentName = intentRequest.currentIntent.name;
-    
-    if (intentName === 'BookChef') { 
+
+    if (intentName === 'BookChef') {
         console.log('called intent :' + intentName);
         return bookChef(intentRequest, callback);
     }
-    if (intentName === 'GreetUser') { 
+    if (intentName === 'GreetUser') {
         console.log('Called intent: ' + intentName);
         return greetUser(intentRequest, callback);
     }
-    
-    throw new Error('No such intent exists'); 
+
+    throw new Error('No such intent exists');
 }
