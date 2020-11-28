@@ -19,7 +19,7 @@ const PaymentForm = (props) => {
   }
   
   return (
-    <Container maxWidth={"sm"} className="bookingFormContainer">
+    <Container maxWidth={"sm"} className="bookingContainer">
       <React.Fragment>
         <Typography variant='h6' gutterBottom>
           Payment method
