@@ -21,25 +21,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 export const DesktopAppBar = (props) => {
   const classes = useStyles();
+  const loggedInUser = props.isLoggedIn;
 
   return (
     <div className={classes.sectionDesktop}>
-      <Link to="/signIn" style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>
+      {!loggedInUser ? <Link to="/signIn" style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>
         <MenuItem>
           <IconButton aria-label="search" color="inherit">
             <PersonIcon />
           </IconButton>
           <p>Sign In</p>
         </MenuItem>
-      </Link>
-      <Link to="/bookChef" style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>
+      </Link> : null}
+      {/* <Link to="/bookChef" style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>
         <MenuItem>
           <IconButton aria-label="search" color="inherit">
             <PersonIcon />
           </IconButton>
           <p>Book Chef</p>
         </MenuItem>
-      </Link>
+      </Link> */}
       <Link to="/findChef" style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>
         <MenuItem>
           <IconButton aria-label="search" color="inherit">
@@ -48,25 +49,23 @@ export const DesktopAppBar = (props) => {
           <p>Find Chef</p>
         </MenuItem>
       </Link>
-      <Link to="/history" style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>
+      {loggedInUser ? <Link to="/history" style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>
         <MenuItem>
           <IconButton aria-label="bookmark" color="inherit">
             <BookmarkIcon />
           </IconButton>
           <p>History</p>
         </MenuItem>
+      </Link> : null}
+      <Link to="/lexbot" style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>
+        <MenuItem>
+          <IconButton aria-label="bookmark" color="inherit">
+            <BookmarkIcon />
+          </IconButton>
+          <p>Chat</p>
+        </MenuItem>
       </Link>
-      {/* <Link to="/jobAlerts" style={{ textDecoration: 'none', display: 'block', color:"inherit" }}>
-              <MenuItem>
-                <IconButton aria-label="show 16 new notifications" color="inherit">
-                  <Badge badgeContent={16} color="secondary">
-                    <NotificationsIcon />
-                  </Badge>
-                </IconButton>
-                <p>Job Alerts</p>
-              </MenuItem>
-            </Link> */}
-      <MenuItem onClick={props.setAnchorEl}>
+      { loggedInUser ? <MenuItem onClick={props.setAnchorEl}>
         <IconButton
           aria-label="account of current user"
           aria-controls={props.menuId}
@@ -76,7 +75,7 @@ export const DesktopAppBar = (props) => {
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
-      </MenuItem>
+      </MenuItem> : null}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -6,49 +6,68 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import Container from '@material-ui/core/Container'
+import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
+import {
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider
+} from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
-const EditHistory = () => {
+import '../style.css';
+
+const EditHistory = (props) => {
   const [slot, setSlot] = React.useState('');
-  const [date, setSelectedDate] = React.useState(new Date());
-  const [people, setPeople] = React.useState('');
-  const [NumOfHours, setNumOfHours] = React.useState('');
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const [NumOfHours, setNumOfHours] = React.useState(props.bookingInfo.hours ? props.bookingInfo.hours: '');
+  const [chefDetails, setChefDetails] = React.useState({});
+  const [slotList] = React.useState(['Breakfast', 'Lunch', 'Dinner']);
 
+  useEffect(() => {    
+    var chefSessionDetails = JSON.parse(sessionStorage.getItem("chefDetails"));
+    setChefDetails(chefSessionDetails);
+  }, []);
+
+  const onSlotchange = (slot) => {
+    setSlot(slot);
+    if (selectedDate in chefDetails.ChefSlots && chefDetails.ChefSlots[selectedDate].includes(slot)) {
+      alert('Slot not Available. Please select some other Slot');
+    }
+  }
+
+  const handleSave = () => {
+    props.onEditBooking({chefName: chefDetails.Name, price: Number(chefDetails.Price), hours: Number(NumOfHours), selectedDate, slot});
+  }
+  
   return (
-    <Container maxWidth={false}>
+    <Container maxWidth={"sm"} className="bookingContainer">
       <Typography variant='h6' gutterBottom>
         Edit Booking
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <TextField
             // required
             id='ChefName'
             name='chefName'
             label='Chef'
             // fullWidth
-            autoComplete='given-name'
+            // autoComplete='given-name'
             className='text-muted'
+            value={chefDetails && chefDetails.Name}
           // get the chef name to this place and delete the input control
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <TextField
             // required
             id='price'
             name='price'
             label='Price/Hr'
-            autoComplete='given-name'
+            // autoComplete='given-name'
             className='text-muted'
+            value={chefDetails && chefDetails.Price}
           // get the Price/Hr for this chef and add here
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id='personCount'
-            name='personCount'
-            label='No. of People'
-            onChange={(e, people) => setPeople(people)}
           />
         </Grid>
         <Grid item xs={12}>
@@ -56,31 +75,44 @@ const EditHistory = () => {
             id='NumOfHours'
             name='NumOfHours'
             label='No. of Hours'
-            onChange={(e, NumOfHours) => setNumOfHours(NumOfHours)}
+            value={NumOfHours}
+            onChange={(event) => setNumOfHours(event.target.value)}
           />
+        </Grid>
+        <Grid item xs={12} >
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDatePicker
+                    disableToolbar
+                    variant='inline'
+                    format='MM/dd/yyyy'
+                    margin='normal'
+                    label='Select Date'
+                    value={selectedDate}
+                    onChange={(e, date) => setSelectedDate(date)}
+                />
+            </MuiPickersUtilsProvider>
+
         </Grid>
         <Grid item xs={12}>
-          <TextField
-            id='date'
-            type='date'
-            defaultValue='2017-05-24'
-            onChange={(e, date) => setSelectedDate(date)}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
           <FormControl>
             <InputLabel>Slot</InputLabel>
             <Select
               value={slot}
-              onChange={(event) => setSlot(event.target.value)}
+              onChange={(event) => onSlotchange(event.target.value)}
             >
-              <MenuItem value='breakfast'>Breakfast</MenuItem>
-              <MenuItem value='lunch'>Lunch</MenuItem>
-              <MenuItem value='dinner'>Dinner</MenuItem>
+              {slotList.map((s, index) => {
+                return <MenuItem value={s}>{s}</MenuItem>
+              })}
             </Select>
           </FormControl>
         </Grid>
       </Grid>
+      <Button
+        onClick={handleSave}
+        className="buttonSave"
+      >
+        Save
+      </Button>
     </Container>
   );
 };

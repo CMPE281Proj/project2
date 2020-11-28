@@ -22,27 +22,32 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function getSteps() {
-  return ['Edit Booking', 'Payment', 'Confirm Booking', 'Finish'];
-}
-
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <EditBooking />;
-    case 1:
-      return <PaymentForm />;
-    case 2:
-      return <ConfirmBooking />;
-    default:
-      return 'Finish';
-  }
-}
 
 const BookChef = () => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [bookingInfo, setBookingInfo] = React.useState({});
+  const [paymentInfo, setPaymentInfo] = React.useState({});
+  
   const steps = getSteps();
+
+  
+  function getSteps() {
+    return ['Edit Booking', 'Payment', 'Confirm Booking', 'Finish'];
+  }
+
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return <EditBooking onEditBooking={(bookingInfo) => setBookingInfo(bookingInfo)} paymentInfo={paymentInfo} bookingInfo={bookingInfo}/>;
+      case 1:
+        return <PaymentForm onPaymentFormUpdate={(paymentInfo) => setPaymentInfo(paymentInfo)} bookingInfo={bookingInfo} paymentInfo={paymentInfo}/>;
+      case 2:
+        return <ConfirmBooking bookingInfo={bookingInfo} paymentInfo={paymentInfo}/>;
+      default:
+        return 'Finish';
+    }
+  }
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -75,7 +80,7 @@ const BookChef = () => {
           (
             <div>
               <Typography className={classes.instructions}>
-                All steps completed - you&apos;re finished
+                Booking is Confirmed!
                 </Typography>
 
               <Button onClick={handleReset} className={classes.button}>

@@ -2,13 +2,19 @@ import React from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { Auth } from 'aws-amplify';
+import { Link } from "react-router-dom";
 
 export const DesktopMenuBar = (props) => {
+
   const handleMenuClose = () => {
     props.setAnchorEl(null);
-    Auth.signOut();
   };
-
+  const handleLogout = async() => {
+    props.setAnchorEl(null);
+    await Auth.signOut();
+    sessionStorage.clear();
+    props.onIsLoggedIn(false);
+  }
     return (
       <Menu
         anchorEl={props.anchorEl}
@@ -20,7 +26,10 @@ export const DesktopMenuBar = (props) => {
         onClose={handleMenuClose}
       >
         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+        <Link to="/signIn" style={{ textDecoration: 'none', display: 'block', color: "inherit" }}
+          onClick={handleLogout}>
+            <MenuItem>Logout</MenuItem>
+        </Link>
       </Menu>
   );
 }

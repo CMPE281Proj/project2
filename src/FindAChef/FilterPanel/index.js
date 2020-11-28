@@ -19,9 +19,9 @@ import Rating from '@material-ui/lab/Rating';
 import Button from '@material-ui/core/Button';
 
 import { useStyles } from './style';
-import { SignalCellularNullOutlined } from '@material-ui/icons';
+import GetChefDataByCriteria from './GetChefDataByCriteria';
 
-export const FilterPanel = () => {
+export const FilterPanel = (props) => {
     const classes = useStyles();
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
@@ -34,7 +34,7 @@ export const FilterPanel = () => {
         }
     };
     const cuisinesList = [
-        'North Indian',
+        'North-Indian',
         'South Indian',
         'Maharashtrian',
         'Rajasthani',
@@ -42,8 +42,8 @@ export const FilterPanel = () => {
     ];
     const [location, setLocation] = React.useState('');
     const [people, setPeople] = React.useState('');
-    const [slot, setSlot] = React.useState('');
-    const [selectedDate, setSelectedDate] = React.useState(new Date());
+    const [slot, setSlot] = React.useState([]);
+    const [selectedDate, setSelectedDate] = React.useState();
     const [cuisine, setCuisine] = React.useState([]);
     const [price, setPriceValue] = React.useState([0, 50]);
     const [rating, setRating] = React.useState(2);
@@ -52,33 +52,26 @@ export const FilterPanel = () => {
     const serchClick = () => {
         const filterQuery = {};
 
-        // Add to FilterQuery only if the user specifies a value, else ignore
-        if (location !== '') {
-            filterQuery.location = location;
-        }
-        if (selectedDate !== null) {
-            filterQuery.date = selectedDate;
-        }
-        if (people !== '') {
-            filterQuery.people = people;
-        }
-        if (cuisine.length !== 0) {
-            filterQuery.cuisine = cuisine;
-        }
-        if (slot !== '') {
-            filterQuery.slot = slot;
-        }
-        if (price !== null) {
-            filterQuery.price = price;
-        }
-        if (rating !== 0) {
-            filterQuery.rating = rating;
-        }
-        if (experience !== '') {
-            filterQuery.experience = experience;
-        }
+        filterQuery.Location = location !== '' ? location : '';
+        filterQuery.Date = selectedDate != null ? selectedDate : '';
+    
 
+        const formattedCuisine = cuisine.toString();
+        filterQuery.Cuisine = formattedCuisine !== '' ? formattedCuisine : '';
+        
+        filterQuery.Slots = slot.length !== 0 ? slot : '';
+        filterQuery.Price = price.length > 0 ? price.map(String) : '';
+        filterQuery.Rating = rating !== 0 ? rating.toString() : '';
+        filterQuery.Experience = experience !== '' ? experience : '';
         console.log('filterQuery', filterQuery);
+
+        GetChefDataByCriteria(filterQuery).then(function (response) {
+            props.onSearch(response);
+            console.log('GetChefDataByCriteria', response);
+        })
+        .catch(function (error) {
+            console.log('GetChefDataByCriteria error', error);
+        }); 
     };
 
     return (
@@ -116,24 +109,11 @@ export const FilterPanel = () => {
                 />
             </MuiPickersUtilsProvider>
 
-            {/* Number of people input field */}
-            <TextField
-                label='No Of People'
-                className={classes.textField}
-                value={people}
-                onChange={(event) => setPeople(event.target.value)}
-                InputLabelProps={{
-                    style: { color: '#7c7979', fontSize: '1.2em' },
-                    shrink: true
-                }}
-                style={{ marginTop: '30px' }}
-            />
-
             {/* Cuisine Input Field */}
             <FormControl className={classes.formControl}>
                 <InputLabel shrink className={classes.selectBoxInput}>
                     Cuisine
-        </InputLabel>
+                </InputLabel>
                 <Select
                     multiple
                     value={cuisine}
@@ -152,16 +132,37 @@ export const FilterPanel = () => {
             </FormControl>
 
             {/* Slot Input Field */}
-            <FormControl className={classes.formControl}>
+            {selectedDate != null ? <FormControl className={classes.formControl}>
                 <InputLabel shrink className={classes.selectBoxInput}>
                     Slot
-        </InputLabel>
+                </InputLabel>
+                <Select
+                    multiple
+                    value={slot}
+                    onChange={(event) => setSlot(event.target.value)}
+                    input={<Input />}
+                    renderValue={(selected) => selected.join(', ')}
+                    MenuProps={MenuProps}
+                >
+                    {["Breakfast", "Lunch", "Dinner"].map((name) => (
+                        <MenuItem key={name} value={name}>
+                            <Checkbox checked={slot.indexOf(name) > -1} />
+                            <ListItemText primary={name} />
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl> : null }
+
+            {/* <FormControl className={classes.formControl}>
+                <InputLabel shrink className={classes.selectBoxInput}>
+                    Slot
+                </InputLabel>
                 <Select value={slot} onChange={(event) => setSlot(event.target.value)}>
                     <MenuItem value='breakfast'>Breakfast</MenuItem>
                     <MenuItem value='lunch'>Lunch</MenuItem>
                     <MenuItem value='dinner'>Dinner</MenuItem>
                 </Select>
-            </FormControl>
+            </FormControl> */}
 
             {/* Price Input Field */}
             <div className={classes.sliderWrap}>

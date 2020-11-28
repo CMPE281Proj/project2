@@ -1,23 +1,43 @@
-// Invoke url : https://79p73jdiu0.execute-api.us-east-1.amazonaws.com/dev
 var AWS = require('aws-sdk');
 AWS.config.update({ region: 'us-east-1' });
 
 exports.handler = (event, context, callback) => {
 
   var ddb = new AWS.DynamoDB({ apiVersion: '2012-08-10', convertEmptyValues: true });
+  console.log('event-------', event);
 
-  // const fieldValues = event.fieldQuery; // a map with key = field of a table and value = the value to be filtered with 
-  const fieldValues = new Map([
-    // ['Experience', '12'], 
-    ['Rating', '3'],
-    // ['Cuisine', [{ "S" : 'North-Indian'}]], 
-    ['Cuisine', 'North-Indian'],
-    ['Price', ['0', '21']],
-    // ,
+  let fieldValues = new Map();
+  fieldValues.set('Rating', event.Rating);
+  fieldValues.set('Price', event.Price);
 
-    ['Date', "11/23/2020"],
-    ['Slots', ['Lunch', 'Dinner']]
-  ]);
+  if (event.Experience !== '') {
+    fieldValues.set('Experience', event.Experience);
+  }
+  if (event.Slots !== null) {
+    fieldValues.set('Slots', event.Slots);
+  }
+  if (event.Date !== '') {
+    fieldValues.set('Date', event.Date);
+  }
+  if (event.Cuisine !== '') {
+    fieldValues.set('Cuisine', event.Cuisine);
+  }
+
+  // console.log(event);
+
+  // let fieldValues = event.fieldValues ? event.fieldValues : []; // a map with key = field of a table and value = the value to be filtered with 
+  // const fieldValues = new Map([
+  //                               // ['Experience', '12'], 
+  //                               ['Rating', '3'],
+  //                               // ['Cuisine', [{ "S" : 'North-Indian'}]], 
+  //                               ['Cuisine', 'North-Indian'],
+  //                               ['Price', ['0','21']],
+  //                               // ,
+
+  //                               ['Date', "11/23/2020"],
+  //                               ['Slots', ['Lunch','Dinner']]
+  //                         ]);
+
 
   const fields = Array.from(fieldValues.keys());
 

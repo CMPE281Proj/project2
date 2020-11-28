@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import Amplify from 'aws-amplify';
 import Container from '@material-ui/core/Container';
@@ -13,26 +14,31 @@ import { ChefDetails } from './ChefDetails';
 import BookingHistory from './BookingHistory';
 import SignUp from './SignUp';
 import ConfirmSignUp from './SignUp/ConfirmSignUp';
+import Lexbot from './Lexbot';
 
-Amplify.configure(awsconfig)
+Amplify.configure(awsconfig);
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const onIsLoggedIn = (isLoggedIn) => {
+    setIsLoggedIn(isLoggedIn);
+  }
   return (
     <Router>
       <div className='App'>
-        <Header />
+        <Header isLoggedIn={isLoggedIn} onIsLoggedIn={onIsLoggedIn}/>
         <Container maxWidth={false}>
           <Switch>
             <Route path='/' exact component={HomePage} />
-            <Route path='/signIn' exact component={SignIn} />
+            <Route path='/signIn' exact component={() => <SignIn onIsLoggedIn={onIsLoggedIn} />}/>
             <Route path='/findChef' exact component={FindAChef} />
             <Route path='/bookChef' exact component={BookChef} />
-            <Route path='/chefProfile/bookChef/:chefId' component={BookChef} />
             <Route path='/chefProfile/:chefId' exact component={ChefDetails} />
             <Route path='/bookingHistory' exact component={BookingHistory} />
             <Route path='/signUp' exact component={SignUp} />
             {/* <Route path='/confirmSignUp' exact component={ConfirmSignUp} /> */}
             <Route path='/confirmSignUp/:email' exact component={ConfirmSignUp} />
+            <Route path='/lexbot' exact component={Lexbot} />
           </Switch>
         </Container>
       </div>

@@ -62,13 +62,13 @@ export const ChefServices = (props) => {
             Price
           </Grid>
           <Grid item xs={12} sm={6} className={classes.serviceValuePrice}>
-            ${chefDetails.Price}
+            ${chefDetails ? chefDetails.Price : 0}
           </Grid>
           <Grid item xs={12} sm={4} className={classes.serviceKey}>
             Cuisines
           </Grid>
           <Grid item xs={12} sm={8} className={classes.serviceValue}>
-          {chefDetails.Cuisine && chefDetails.Cuisine.length > 0 ? chefDetails.Cuisine.map((cuisine) => (
+          {chefDetails && chefDetails.Cuisine && chefDetails.Cuisine.length > 0 ? chefDetails.Cuisine.map((cuisine) => (
             <div>{cuisine}</div>
           )): null}
           </Grid>
@@ -77,7 +77,7 @@ export const ChefServices = (props) => {
       <FullCalendar
         plugins={[ dayGridPlugin ]}
         initialView="dayGridMonth"
-        events={chefDetails.ChefSlots ? chefSlots() : []}
+        events={chefDetails && chefDetails.ChefSlots ? chefSlots() : []}
       />
     </div>
   );

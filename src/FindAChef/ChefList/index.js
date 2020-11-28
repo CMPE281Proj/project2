@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import { useStyles } from './style';
 import GetDefaultChefData from './GetDefaultChefData';
 
-export const ChefList = () => {
+export const ChefList = (props) => {
     const [chefList, setChefList] = React.useState([]);
 
     const classes = useStyles();
@@ -62,7 +62,10 @@ export const ChefList = () => {
             console.log('GetDefaultChefData error', error);
         }); 
     }, []);
-    
+    useEffect(() => {    
+        if (props.filteredChefData.filteredChefData)
+        setChefList(props.filteredChefData.filteredChefData);
+    }, [props.filteredChefData]);
     
     const getpathQuery = (chefId) => {
         const pathQuery = "chefProfile/" + chefId;
