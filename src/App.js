@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import Amplify from 'aws-amplify';
 import Container from '@material-ui/core/Container';
@@ -18,14 +19,18 @@ import Lexbot from './Lexbot';
 Amplify.configure(awsconfig);
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const onIsLoggedIn = (isLoggedIn) => {
+    setIsLoggedIn(isLoggedIn);
+  }
   return (
     <Router>
       <div className='App'>
-        <Header />
+        <Header isLoggedIn={isLoggedIn} onIsLoggedIn={onIsLoggedIn}/>
         <Container maxWidth={false}>
           <Switch>
             <Route path='/' exact component={HomePage} />
-            <Route path='/signIn' exact component={SignIn} />
+            <Route path='/signIn' exact component={() => <SignIn onIsLoggedIn={onIsLoggedIn} />}/>
             <Route path='/findChef' exact component={FindAChef} />
             <Route path='/bookChef' exact component={BookChef} />
             <Route path='/chefProfile/:chefId' exact component={ChefDetails} />

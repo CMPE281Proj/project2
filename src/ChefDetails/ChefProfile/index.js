@@ -18,6 +18,8 @@ export const ChefProfile = (props) => {
   };
 
   const chefDetails = props.chefDetails;
+  const loggedInUser = sessionStorage.getItem("userDetails") ? true : false;
+  
   return (
     <Container>
       <Grid container spacing={2} className={classes.chefDetails}>
@@ -47,11 +49,17 @@ export const ChefProfile = (props) => {
                 Book a Slot
               </Button>
             </Link> */}
-            <Link to="/signIn" style={{ textDecoration: 'none', display: 'block', color: "inherit" }} onClick={sessionStorage.setItem("chefDetails", JSON.stringify(chefDetails))}>
+            {loggedInUser ? 
+              <Link to="/bookChef" style={{ textDecoration: 'none', display: 'block', color: "inherit" }} onClick={sessionStorage.setItem("chefDetails", JSON.stringify(chefDetails))}>
+                <Button variant="contained" color="primary">
+                  Book a Slot
+                </Button>
+              </Link>:
+              <Link to="/signIn" style={{ textDecoration: 'none', display: 'block', color: "inherit" }} onClick={sessionStorage.setItem("chefDetails", JSON.stringify(chefDetails))}>
               <Button variant="contained" color="primary">
                 Book a Slot
               </Button>
-            </Link>
+            </Link>}
           </div>
         </Grid>
       </Grid>

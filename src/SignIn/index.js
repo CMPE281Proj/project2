@@ -1,18 +1,3 @@
-// import React from 'react'
-
-// import Amplify from 'aws-amplify'
-// import awsconfig from '../aws-exports'
-// import {withAuthenticator } from '@aws-amplify/ui-react'
-
-// Amplify.configure(awsconfig)
-
-// const SignIn = () => {
-//   return (
-//     <div />
-//   )
-// }
-
-// export default withAuthenticator(SignIn, true);
 
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
@@ -53,8 +38,11 @@ const SignIn = (props) => {
     try {
       const user = await Auth.signIn(emailid, password);
       console.log(user);
-      if (sessionStorage.getItem("chefDetails"))
+      sessionStorage.setItem("userDetails", JSON.stringify({userEmailId: emailid}));
+      props.onIsLoggedIn(true);
+      if (sessionStorage.getItem("chefDetails")) {
         history.push("bookChef/");
+      }
       else
         history.push("bookingHistory/");
     } catch (error) {

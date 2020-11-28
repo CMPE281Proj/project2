@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Header = () => {
+export const Header = (props) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -107,8 +107,8 @@ export const Header = () => {
             />
           </div>
           <div className={classes.grow} />
-          <DesktopAppBar setAnchorEl={(event) => setAnchorEl(event.currentTarget)} menuId={menuId}/>
-          <MobileAppBar setMobileMoreAnchorEl={(event) => setMobileMoreAnchorEl(event.currentTarget)} mobileMenuId={mobileMenuId}/>          
+          <DesktopAppBar setAnchorEl={(event) => setAnchorEl(event.currentTarget)} menuId={menuId} isLoggedIn={props.isLoggedIn}/>
+          <MobileAppBar setMobileMoreAnchorEl={(event) => setMobileMoreAnchorEl(event.currentTarget)} mobileMenuId={mobileMenuId} isLoggedIn={props.isLoggedIn}/>          
         </Toolbar>
       </AppBar>
       <MobileMenuBar
@@ -117,8 +117,9 @@ export const Header = () => {
         mobileMenuId={mobileMenuId}
         isMobileMenuOpen={isMobileMenuOpen}
         setAnchorEl={(event) => setAnchorEl(event.currentTarget)}
+        isLoggedIn={props.isLoggedIn}
       />
-      <DesktopMenuBar anchorEl={anchorEl} setAnchorEl={(target) => setAnchorEl(target)} menuId={menuId} isMenuOpen={isMenuOpen}/>
+      <DesktopMenuBar onIsLoggedIn={props.onIsLoggedIn} anchorEl={anchorEl} setAnchorEl={(target) => setAnchorEl(target)} menuId={menuId} isMenuOpen={isMenuOpen}/>
     </div>
   );
 }

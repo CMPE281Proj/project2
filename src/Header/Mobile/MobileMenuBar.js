@@ -20,14 +20,14 @@ export const MobileMenuBar = (props) => {
         open={props.isMobileMenuOpen}
         onClose={props.setMobileMoreAnchorEl}
         >
-         <Link to="/signIn" style={{ textDecoration: 'none', display: 'block', color:"inherit" }}>
+         {!props.isLoggedIn ? <Link to="/signIn" style={{ textDecoration: 'none', display: 'block', color:"inherit" }}>
               <MenuItem>
                 <IconButton aria-label="search" color="inherit">
                 <PersonIcon/>
                 </IconButton>
                 <p>Sign In</p>
               </MenuItem>
-            </Link>
+            </Link> : null}
         <Link to="/findChefs" style={{ textDecoration: 'none', display: 'block', color:"inherit" }}>
             <MenuItem>
                 <IconButton aria-label="search" color="inherit">
@@ -36,25 +36,15 @@ export const MobileMenuBar = (props) => {
                 <p>Find Chef</p>
             </MenuItem>
         </Link>
-        <Link to="/history" style={{ textDecoration: 'none', display: 'block', color:"inherit" }}>
+        {props.isLoggedIn ? <Link to="/history" style={{ textDecoration: 'none', display: 'block', color:"inherit" }}>
             <MenuItem>
                 <IconButton aria-label="bookmark" color="inherit">
                 <BookmarkIcon />
                 </IconButton>
                 <p>History</p>
             </MenuItem>
-        </Link>
-        {/* <Link to="/jobAlerts" style={{ textDecoration: 'none', display: 'block', color:"inherit" }}>
-            <MenuItem>
-            <IconButton aria-label="show 11 new notifications" color="inherit">
-                <Badge badgeContent={11} color="secondary">
-                <NotificationsIcon />
-                </Badge>
-            </IconButton>
-            <p>Job Alerts</p>
-            </MenuItem>
-        </Link> */}
-        <MenuItem onClick={props.setAnchorEl}>
+        </Link> : null}
+        {props.isLoggedIn ? <MenuItem onClick={props.setAnchorEl}>
           <IconButton
             aria-label="account of current user"
             aria-controls="primary-search-account-menu"
@@ -64,7 +54,7 @@ export const MobileMenuBar = (props) => {
             <AccountCircle />
           </IconButton>
           <p>Profile</p>
-        </MenuItem>
+        </MenuItem> : null}
       </Menu>
     );
 }
