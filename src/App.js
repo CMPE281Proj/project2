@@ -28,7 +28,6 @@ function App() {
             <Route path='/signIn' exact component={SignIn} />
             <Route path='/findChef' exact component={FindAChef} />
             <Route path='/bookChef' exact component={BookChef} />
-            <Route path='/chefProfile/bookChef/:chefId' component={BookChef} />
             <Route path='/chefProfile/:chefId' exact component={ChefDetails} />
             <Route path='/bookingHistory' exact component={BookingHistory} />
             <Route path='/signUp' exact component={SignUp} />

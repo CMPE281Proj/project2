@@ -141,3 +141,8 @@ Services :
 		- Integration of profile and portfolio images
 		- Integration of Chef Details
 		- Integration of filter with criteria
+
+##Prajakta
+- Added UI for Review Section
+	- Review API Integration
+- Added Book Slot Workflow with the integration

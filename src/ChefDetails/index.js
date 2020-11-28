@@ -31,7 +31,7 @@ export const ChefDetails = (props) => {
           <ChefServices chefDetails={chefDetails}/>
         </Grid>
         <Grid item xs={12} sm={8}>
-          <ChefPhotosReviews chefId={chefId}/>
+          <ChefPhotosReviews chefId={chefId} chefName={chefDetails.Name}/>
         </Grid>
       </Grid>
     </Container>

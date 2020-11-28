@@ -5,20 +5,14 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
+import { Container } from '@material-ui/core';
 
-const chefData = [{ name: 'Chef', desc: 'Renu K', price: 19.99, NumOfHrs: 2 }];
 const addresses = [
   '1 Material-UI Drive',
   'Reactville',
   'Anytown',
   '99999',
   'USA'
-];
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr Uma shankar' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-3124' },
-  { name: 'Expiry date', detail: '04/2022' }
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -33,55 +27,66 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ReviewBooking = () => {
+const ReviewBooking = (props) => {
   const classes = useStyles();
-
+  const bookingInfo = props.bookingInfo;
+  const paymentInfo = props.paymentInfo;
   return (
-    <React.Fragment>
-      <Typography variant='h6' gutterBottom>
-        Booking summary
-      </Typography>
-      <List disablePadding>
-        {chefData.map((chef) => (
-          <ListItem className={classes.listItem} key={chef.name}>
-            <ListItemText primary={chef.name} secondary={chef.desc} />
-            <Typography variant='body2'>{chef.NumOfHrs}Hrs</Typography>
+    <Container maxWidth={"sm"} className="bookingContainer">
+      <React.Fragment>
+        <Typography variant='h6' gutterBottom>
+          Booking summary
+        </Typography>
+        <List disablePadding>
+          <ListItem className={classes.listItem}>
+            <ListItemText primary={bookingInfo.chefName}/>
+            <Typography variant='body2'>{bookingInfo.hours}Hrs</Typography>
           </ListItem>
-        ))}
-        <ListItem className={classes.listItem}>
-          <ListItemText primary='Total' />
-          <Typography variant='subtitle1' className={classes.total}>
-            25
-          </Typography>
-        </ListItem>
-      </List>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Typography variant='h6' gutterBottom className={classes.title}>
-            Shipping
-          </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
-        </Grid>
-        <Grid item container direction='column' xs={12} sm={6}>
-          <Typography variant='h6' gutterBottom className={classes.title}>
-            Payment details
-          </Typography>
-          <Grid container>
-            {payments.map((payment) => (
-              <React.Fragment key={payment.name}>
+          <ListItem className={classes.listItem}>
+            <ListItemText primary='Total' />
+            <Typography variant='subtitle1' className={classes.total}>
+              ${bookingInfo.price*bookingInfo.hours}
+            </Typography>
+          </ListItem>
+        </List>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <Typography variant='h6' gutterBottom className={classes.title}>
+              Shipping
+            </Typography>
+            <Typography gutterBottom>John Smith</Typography>
+            <Typography gutterBottom>{addresses.join(', ')}</Typography>
+          </Grid>
+          <Grid item container direction='column' xs={12} sm={6}>
+            <Typography variant='h6' gutterBottom className={classes.title}>
+              Payment details
+            </Typography>
+            <Grid container>
+              <React.Fragment>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
+                  <Typography gutterBottom>Card holder</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
+                  <Typography gutterBottom>{paymentInfo.cardName}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>Card number</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{paymentInfo.cardNumber}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>Expiry date</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{paymentInfo.expDate}</Typography>
                 </Grid>
               </React.Fragment>
-            ))}
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </React.Fragment>
+      </React.Fragment>
+    </Container>
   );
 }
 export default ReviewBooking;

@@ -54,7 +54,7 @@ export const FilterPanel = (props) => {
 
         filterQuery.Location = location !== '' ? location : '';
         filterQuery.Date = selectedDate != null ? selectedDate : '';
-        filterQuery.People = people !== '' ? people : '';
+    
 
         const formattedCuisine = cuisine.toString();
         filterQuery.Cuisine = formattedCuisine !== '' ? formattedCuisine : '';
@@ -108,19 +108,6 @@ export const FilterPanel = (props) => {
                     style={{ marginTop: '30px', width: '100%' }}
                 />
             </MuiPickersUtilsProvider>
-
-            {/* Number of people input field */}
-            <TextField
-                label='No Of People'
-                className={classes.textField}
-                value={people}
-                onChange={(event) => setPeople(event.target.value)}
-                InputLabelProps={{
-                    style: { color: '#7c7979', fontSize: '1.2em' },
-                    shrink: true
-                }}
-                style={{ marginTop: '30px' }}
-            />
 
             {/* Cuisine Input Field */}
             <FormControl className={classes.formControl}>

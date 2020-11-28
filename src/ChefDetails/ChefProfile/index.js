@@ -23,7 +23,7 @@ export const ChefProfile = (props) => {
       <Grid container spacing={2} className={classes.chefDetails}>
         <Grid item xs={12} sm={4}>
           <img
-            src={chefDetails.Image}
+            src={chefDetails ? chefDetails.Image : ''}
             alt="Chef Profile"
             height="180"
             width="180"
@@ -31,10 +31,10 @@ export const ChefProfile = (props) => {
           />
         </Grid>
         <Grid item xs={12} sm={8} className={classes.chefProfileInfo}>
-          <h1>{chefDetails.Name}</h1>
-          <h3 className={classes.chefProfileAddress}>{chefDetails.Location}</h3>
+          <h1>{chefDetails ? chefDetails.Name : ''}</h1>
+          <h3 className={classes.chefProfileAddress}>{chefDetails ? chefDetails.Location : ''}</h3>
           <Rating
-            value={chefDetails.Rating ? chefDetails.Rating : 0}
+            value={chefDetails && chefDetails.Rating ? chefDetails.Rating : 0}
             className={classes.chefRating}
             name="Chef Rating"
             size="medium"
@@ -42,7 +42,12 @@ export const ChefProfile = (props) => {
           <span className={classes.chefProfileInfoReviewCount}>(20)</span>
           <div className={classes.chefProfileInfoButtons}>
             <span className={classes.chefProfileFav}>Add To Favourites</span>
-            <Link to={getpathQuery(chefDetails.Email)} style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>
+            {/* <Link to={getpathQuery(chefDetails && chefDetails.Email)} style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>
+              <Button variant="contained" color="primary">
+                Book a Slot
+              </Button>
+            </Link> */}
+            <Link to="/signIn" style={{ textDecoration: 'none', display: 'block', color: "inherit" }} onClick={sessionStorage.setItem("chefDetails", JSON.stringify(chefDetails))}>
               <Button variant="contained" color="primary">
                 Book a Slot
               </Button>

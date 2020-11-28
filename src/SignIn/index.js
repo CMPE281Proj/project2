@@ -53,7 +53,10 @@ const SignIn = (props) => {
     try {
       const user = await Auth.signIn(emailid, password);
       console.log(user);
-      history.push('/bookingHistory');
+      if (sessionStorage.getItem("chefDetails"))
+        history.push("bookChef/");
+      else
+        history.push("bookingHistory/");
     } catch (error) {
       setErrorMessage(error.message);
 
