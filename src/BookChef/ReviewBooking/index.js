@@ -9,6 +9,7 @@ import { Container } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 import PutCustomerBookings from './PutCustomerBookings';
+import UpdateChefTableSlot from './UpdateChefTableSlot';
 
 const useStyles = makeStyles((theme) => ({
   listItem: {
@@ -44,8 +45,15 @@ const ReviewBooking = (props) => {
     customerBookings.hours = bookingInfo.hours;
     customerBookings.slot = [bookingInfo.slot];
     customerBookings.totalPrice = totalPrice;
+    customerBookings.chefEmail = bookingInfo.chefEmail
     PutCustomerBookings(customerBookings).then(function (response) {
       console.log('PutCustomerBookings', response);
+      UpdateChefTableSlot({email: bookingInfo.chefEmail, updatedChefSlots: bookingInfo.updatedChefSlots}).then(function (response) {
+        console.log('UpdateChefTableSlot', response);
+      })
+      .catch(function (error) {
+          console.log('UpdateChefTableSlot error', error);
+      });
     })
     .catch(function (error) {
         console.log('PutCustomerBookings error', error);

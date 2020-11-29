@@ -49,8 +49,14 @@ const EditHistory = (props) => {
   }
 
   const handleSave = () => {
-    props.onEditBooking({chefName: chefDetails.Name, price: Number(chefDetails.Price),
-      hours: Number(NumOfHours), selectedDate, slot, custName, custEmail});
+    if (selectedDate in chefDetails.ChefSlots) {
+      chefDetails.ChefSlots[selectedDate].push(slot);
+    } else {
+      chefDetails.ChefSlots[selectedDate] = [slot];
+    }
+    console.log("chefDetails.ChefSlots", chefDetails.ChefSlots);
+    props.onEditBooking({chefName: chefDetails.Name, price: Number(chefDetails.Price), chefEmail: chefDetails.Email,
+      hours: Number(NumOfHours), selectedDate, slot, custName, custEmail, updatedChefSlots: chefDetails.ChefSlots});
   }
   
   return (
