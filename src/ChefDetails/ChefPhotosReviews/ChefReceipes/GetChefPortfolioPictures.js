@@ -12,7 +12,7 @@ const GetChefPortfolioPictures = (event) => {
               imageList.push(
                 {
                   img: 'http://d1q6lc2rasmdf5.cloudfront.net/ChefPictures/chefPortfolioPictures/'+ event.Email + '/' + fileName,
-                  title: fileName
+                  title: fileName.split('.').slice(0, -1).join('.')
                 }
               )
             }

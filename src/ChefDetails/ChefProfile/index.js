@@ -41,7 +41,7 @@ export const ChefProfile = (props) => {
             name="Chef Rating"
             size="medium"
           />
-          <span className={classes.chefProfileInfoReviewCount}>(20)</span>
+          <span className={classes.chefProfileInfoReviewCount}>({chefDetails.TotalNumberOfCustomersReviewed})</span>
           <div className={classes.chefProfileInfoButtons}>
             <span className={classes.chefProfileFav}>Add To Favourites</span>
             {/* <Link to={getpathQuery(chefDetails && chefDetails.Email)} style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>

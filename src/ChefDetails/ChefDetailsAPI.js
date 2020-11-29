@@ -6,7 +6,7 @@ export const ChefDetailsAPI = (event) => {
       .then(function (response) {
         if (response.data !== null) {
           const chefDetails = response.data;
-          chefDetails.Image = 'http://d1q6lc2rasmdf5.cloudfront.net/ChefPictures/'+ chefDetails.Email + '.jpg';
+          chefDetails.Image = 'http://d1q6lc2rasmdf5.cloudfront.net/ChefPictures/ChefProfilePics/'+ chefDetails.Email + '.jpg';
           resolve(chefDetails);
         }
       })

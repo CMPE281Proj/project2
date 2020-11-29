@@ -6,14 +6,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
-const addresses = [
-  '1 Material-UI Drive',
-  'Reactville',
-  'Anytown',
-  '99999',
-  'USA'
-];
+import PutCustomerBookings from './PutCustomerBookings';
 
 const useStyles = makeStyles((theme) => ({
   listItem: {
@@ -31,6 +26,31 @@ const ReviewBooking = (props) => {
   const classes = useStyles();
   const bookingInfo = props.bookingInfo;
   const paymentInfo = props.paymentInfo;
+  const totalPrice = bookingInfo ? bookingInfo.price*bookingInfo.hours : 0;
+  const addresses = [
+    '1 Material-UI Drive',
+    'Reactville',
+    'Anytown',
+    '99999',
+    'USA'
+  ];
+  
+  const submitBookingInfo = (totalPrice) => {
+    const customerBookings = {}
+    customerBookings.chefName = bookingInfo.chefName;
+    customerBookings.custName = bookingInfo.custName;
+    customerBookings.custEmail = bookingInfo.custEmail;
+    customerBookings.selectedDate = bookingInfo.selectedDate;
+    customerBookings.hours = bookingInfo.hours;
+    customerBookings.slot = [bookingInfo.slot];
+    customerBookings.totalPrice = totalPrice;
+    PutCustomerBookings(customerBookings).then(function (response) {
+      console.log('PutCustomerBookings', response);
+    })
+    .catch(function (error) {
+        console.log('PutCustomerBookings error', error);
+    });
+  }
   return (
     <Container maxWidth={"sm"} className="bookingContainer">
       <React.Fragment>
@@ -86,6 +106,12 @@ const ReviewBooking = (props) => {
           </Grid>
         </Grid>
       </React.Fragment>
+      <Button
+        onClick={() => submitBookingInfo(totalPrice)}
+        className="buttonSave"
+      >
+        Submit
+      </Button>
     </Container>
   );
 }

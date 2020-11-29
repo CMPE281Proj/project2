@@ -34,11 +34,7 @@ export const FilterPanel = (props) => {
         }
     };
     const cuisinesList = [
-        'North-Indian',
-        'South Indian',
-        'Maharashtrian',
-        'Rajasthani',
-        'Gujarati'
+        "North-Indian" , "Manipuri", "Rajasthani", "South-Indian" ,  "Bengali ", "Maharastrian", "Andhra"
     ];
     const [location, setLocation] = React.useState('');
     const [people, setPeople] = React.useState('');

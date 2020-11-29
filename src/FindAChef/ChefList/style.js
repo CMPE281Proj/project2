@@ -6,6 +6,7 @@ export const useStyles = makeStyles({
   },
   chefImage: {
       maxWidth: 200,
+      maxHeight: '150px'
   },
   chefContent: {
       textAlign: "left",
