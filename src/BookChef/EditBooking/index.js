@@ -21,13 +21,13 @@ import '../style.css';
 const EditHistory = (props) => {
   const [slot, setSlot] = React.useState('');
   const [selectedDate, setSelectedDate] = React.useState(new Date());
-  const [NumOfHours, setNumOfHours] = React.useState(props.bookingInfo.hours ? props.bookingInfo.hours: '');
+  const [NumOfHours, setNumOfHours] = React.useState(props.bookingInfo.hours ? props.bookingInfo.hours : '');
   const [chefDetails, setChefDetails] = React.useState({});
   const [slotList] = React.useState(['Breakfast', 'Lunch', 'Dinner']);
   const [custName, setCustName] = React.useState('');
   const [custEmail, setCustEmail] = React.useState('');
 
-  useEffect(() => {    
+  useEffect(() => {
     var chefSessionDetails = JSON.parse(sessionStorage.getItem("chefDetails"));
     var userDetails = JSON.parse(sessionStorage.getItem("userDetails"));
     setChefDetails(chefSessionDetails);
@@ -36,9 +36,9 @@ const EditHistory = (props) => {
       setCustName(response.Name);
       setCustEmail(userDetails.userEmailId);
     })
-    .catch(function (error) {
+      .catch(function (error) {
         console.log('GetCustomerDetails error', error);
-    }); 
+      });
   }, []);
 
   const onSlotchange = (slot) => {
@@ -49,10 +49,12 @@ const EditHistory = (props) => {
   }
 
   const handleSave = () => {
-    props.onEditBooking({chefName: chefDetails.Name, price: Number(chefDetails.Price),
-      hours: Number(NumOfHours), selectedDate, slot, custName, custEmail});
+    props.onEditBooking({
+      chefName: chefDetails.Name, price: Number(chefDetails.Price),
+      hours: Number(NumOfHours), selectedDate, slot, custName, custEmail
+    });
   }
-  
+
   return (
     <Container maxWidth={"sm"} className="bookingContainer">
       <Typography variant='h6' gutterBottom>
@@ -95,16 +97,16 @@ const EditHistory = (props) => {
         </Grid>
         <Grid item xs={12} >
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                    disableToolbar
-                    variant='inline'
-                    format='MM/dd/yyyy'
-                    margin='normal'
-                    label='Select Date'
-                    value={selectedDate}
-                    onChange={(e, date) => setSelectedDate(date)}
-                />
-            </MuiPickersUtilsProvider>
+            <KeyboardDatePicker
+              disableToolbar
+              variant='inline'
+              format='MM/dd/yyyy'
+              margin='normal'
+              label='Select Date'
+              value={selectedDate}
+              onChange={(e, date) => setSelectedDate(date)}
+            />
+          </MuiPickersUtilsProvider>
 
         </Grid>
         <Grid item xs={12}>
