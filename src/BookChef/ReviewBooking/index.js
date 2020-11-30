@@ -27,7 +27,7 @@ const ReviewBooking = (props) => {
   const classes = useStyles();
   const bookingInfo = props.bookingInfo;
   const paymentInfo = props.paymentInfo;
-  const totalPrice = bookingInfo ? bookingInfo.price*bookingInfo.hours : 0;
+  const totalPrice = bookingInfo ? bookingInfo.price * bookingInfo.hours : 0;
   const addresses = [
     '1 Material-UI Drive',
     'Reactville',
@@ -35,17 +35,22 @@ const ReviewBooking = (props) => {
     '99999',
     'USA'
   ];
-  
+
   const submitBookingInfo = (totalPrice) => {
     const customerBookings = {}
+    const bookingID = new Date().getTime();
+    const userDetails = JSON.parse(sessionStorage.getItem('userDetails'));
+    console.log(userDetails);
+
+    customerBookings.bookingID = bookingID;
     customerBookings.chefName = bookingInfo.chefName;
     customerBookings.custName = bookingInfo.custName;
-    customerBookings.custEmail = bookingInfo.custEmail;
+    customerBookings.chefEmail = bookingInfo.chefEmail;
     customerBookings.selectedDate = bookingInfo.selectedDate;
     customerBookings.hours = bookingInfo.hours;
     customerBookings.slot = [bookingInfo.slot];
     customerBookings.totalPrice = totalPrice;
-    customerBookings.chefEmail = bookingInfo.chefEmail
+    customerBookings.custEmail = userDetails.userEmailId;
     PutCustomerBookings(customerBookings).then(function (response) {
       console.log('PutCustomerBookings', response);
       UpdateChefTableSlot({email: bookingInfo.chefEmail, updatedChefSlots: bookingInfo.updatedChefSlots}).then(function (response) {
@@ -55,9 +60,10 @@ const ReviewBooking = (props) => {
           console.log('UpdateChefTableSlot error', error);
       });
     })
-    .catch(function (error) {
+      .catch(function (error) {
         console.log('PutCustomerBookings error', error);
-    });
+      });
+
   }
   return (
     <Container maxWidth={"sm"} className="bookingContainer">
@@ -67,13 +73,13 @@ const ReviewBooking = (props) => {
         </Typography>
         <List disablePadding>
           <ListItem className={classes.listItem}>
-            <ListItemText primary={bookingInfo.chefName}/>
+            <ListItemText primary={bookingInfo.chefName} />
             <Typography variant='body2'>{bookingInfo.hours}Hrs</Typography>
           </ListItem>
           <ListItem className={classes.listItem}>
             <ListItemText primary='Total' />
             <Typography variant='subtitle1' className={classes.total}>
-              ${bookingInfo.price*bookingInfo.hours}
+              ${bookingInfo.price * bookingInfo.hours}
             </Typography>
           </ListItem>
         </List>

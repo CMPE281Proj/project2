@@ -19,7 +19,7 @@ export const ChefProfile = (props) => {
 
   const chefDetails = props.chefDetails;
   const loggedInUser = sessionStorage.getItem("userDetails") ? true : false;
-  
+
   return (
     <Container>
       <Grid container spacing={2} className={classes.chefDetails}>
@@ -43,23 +43,23 @@ export const ChefProfile = (props) => {
           />
           <span className={classes.chefProfileInfoReviewCount}>({chefDetails.TotalNumberOfCustomersReviewed})</span>
           <div className={classes.chefProfileInfoButtons}>
-            <span className={classes.chefProfileFav}>Add To Favourites</span>
+            {/* <span className={classes.chefProfileFav}>Add To Favourites</span> */}
             {/* <Link to={getpathQuery(chefDetails && chefDetails.Email)} style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>
               <Button variant="contained" color="primary">
                 Book a Slot
               </Button>
             </Link> */}
-            {loggedInUser ? 
+            {loggedInUser ?
               <Link to="/bookChef" style={{ textDecoration: 'none', display: 'block', color: "inherit" }} onClick={sessionStorage.setItem("chefDetails", JSON.stringify(chefDetails))}>
                 <Button variant="contained" color="primary">
                   Book a Slot
                 </Button>
-              </Link>:
+              </Link> :
               <Link to="/signIn" style={{ textDecoration: 'none', display: 'block', color: "inherit" }} onClick={sessionStorage.setItem("chefDetails", JSON.stringify(chefDetails))}>
-              <Button variant="contained" color="primary">
-                Book a Slot
+                <Button variant="contained" color="primary">
+                  Book a Slot
               </Button>
-            </Link>}
+              </Link>}
           </div>
         </Grid>
       </Grid>

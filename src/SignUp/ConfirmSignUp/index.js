@@ -24,7 +24,7 @@ const Alert = (props) => {
 const Usertext = () => {
   return (
     <Typography variant='body2' color='textSecondary' align='center'>
-      <Link color='inherit' href='https://material-ui.com/'>
+      <Link color='inherit'>
         Please enter the confirmation code sent to your email to complete
         account sign up!
       </Link>
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     backgroundImage:
-      'url(https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80)',
+      'url(http://d1q6lc2rasmdf5.cloudfront.net/OtherPictures/SignIn.jpg)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light'

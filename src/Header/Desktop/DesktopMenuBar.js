@@ -25,7 +25,9 @@ export const DesktopMenuBar = (props) => {
         open={props.isMenuOpen}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+        <Link to="/custProfile" style={{ textDecoration: 'none', display: 'block', color: "inherit" }} >
+          <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+        </Link>
         <Link to="/signIn" style={{ textDecoration: 'none', display: 'block', color: "inherit" }}
           onClick={handleLogout}>
             <MenuItem>Logout</MenuItem>

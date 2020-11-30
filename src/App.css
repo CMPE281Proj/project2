@@ -28,9 +28,6 @@
   color: #61dafb;
 }
 
-.container{
-  background-image: %PUBLIC_URL%/background.jpg;
-}
 
 @keyframes App-logo-spin {
   from {

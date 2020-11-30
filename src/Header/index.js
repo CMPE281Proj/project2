@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-
+import { Link } from "react-router-dom";
 import { DesktopAppBar } from './Desktop/DesktopAppBar';
 import { DesktopMenuBar } from './Desktop/DesktopMenuBar';
 import { MobileAppBar } from './Mobile/MobileAppBar';
@@ -91,9 +91,9 @@ export const Header = (props) => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            My Chef
+            <Link to='/' style={{ textDecoration: 'none', display: 'block', color: "inherit" }}> My Chef</Link>
           </Typography>
-          <div className={classes.search}>
+          {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -105,10 +105,10 @@ export const Header = (props) => {
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
-          </div>
+          </div> */}
           <div className={classes.grow} />
-          <DesktopAppBar setAnchorEl={(event) => setAnchorEl(event.currentTarget)} menuId={menuId} isLoggedIn={props.isLoggedIn}/>
-          <MobileAppBar setMobileMoreAnchorEl={(event) => setMobileMoreAnchorEl(event.currentTarget)} mobileMenuId={mobileMenuId} isLoggedIn={props.isLoggedIn}/>          
+          <DesktopAppBar setAnchorEl={(event) => setAnchorEl(event.currentTarget)} menuId={menuId} isLoggedIn={props.isLoggedIn} />
+          <MobileAppBar setMobileMoreAnchorEl={(event) => setMobileMoreAnchorEl(event.currentTarget)} mobileMenuId={mobileMenuId} isLoggedIn={props.isLoggedIn} />
         </Toolbar>
       </AppBar>
       <MobileMenuBar
@@ -119,7 +119,7 @@ export const Header = (props) => {
         setAnchorEl={(event) => setAnchorEl(event.currentTarget)}
         isLoggedIn={props.isLoggedIn}
       />
-      <DesktopMenuBar onIsLoggedIn={props.onIsLoggedIn} anchorEl={anchorEl} setAnchorEl={(target) => setAnchorEl(target)} menuId={menuId} isMenuOpen={isMenuOpen}/>
+      <DesktopMenuBar onIsLoggedIn={props.onIsLoggedIn} anchorEl={anchorEl} setAnchorEl={(target) => setAnchorEl(target)} menuId={menuId} isMenuOpen={isMenuOpen} />
     </div>
   );
 }

@@ -6,7 +6,7 @@ export const GetCustomerDetails = (event) => {
       .then(function (response) {
         if (response.data !== null) {
           const custDetails = response.data;
-          custDetails.Image = 'http://d1q6lc2rasmdf5.cloudfront.net/ChefPictures/ChefProfilePics/'+ custDetails.Email + '.jpg';
+          custDetails.Image = 'http://d1q6lc2rasmdf5.cloudfront.net/CustomerPictures/'+ custDetails.Email + '.jpg';
           resolve(custDetails);
         }
       })
