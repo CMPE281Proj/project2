@@ -26,7 +26,7 @@ const GetChefDataByCriteria = (event) => {
               Price: element.Price.N,
               Rating: element.Rating.N,
               Zipcode: element.Zipcode.N.ChefSlots,
-              Image: 'http://d1q6lc2rasmdf5.cloudfront.net/ChefPictures/' + element.Email.S + '.jpg'
+              Image: 'http://d1q6lc2rasmdf5.cloudfront.net/ChefPictures/ChefProfilePics/' + element.Email.S + '.jpg'
             });
           });
           console.log("response.................x", response);

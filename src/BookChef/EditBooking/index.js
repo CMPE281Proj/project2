@@ -14,6 +14,8 @@ import {
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 
+import GetCustomerDetails from './GetCustomerDetails';
+
 import '../style.css';
 
 const EditHistory = (props) => {
@@ -22,10 +24,21 @@ const EditHistory = (props) => {
   const [NumOfHours, setNumOfHours] = React.useState(props.bookingInfo.hours ? props.bookingInfo.hours: '');
   const [chefDetails, setChefDetails] = React.useState({});
   const [slotList] = React.useState(['Breakfast', 'Lunch', 'Dinner']);
+  const [custName, setCustName] = React.useState('');
+  const [custEmail, setCustEmail] = React.useState('');
 
   useEffect(() => {    
     var chefSessionDetails = JSON.parse(sessionStorage.getItem("chefDetails"));
+    var userDetails = JSON.parse(sessionStorage.getItem("userDetails"));
     setChefDetails(chefSessionDetails);
+
+    GetCustomerDetails(userDetails.userEmailId).then(function (response) {
+      setCustName(response.Name);
+      setCustEmail(userDetails.userEmailId);
+    })
+    .catch(function (error) {
+        console.log('GetCustomerDetails error', error);
+    }); 
   }, []);
 
   const onSlotchange = (slot) => {
@@ -36,7 +49,8 @@ const EditHistory = (props) => {
   }
 
   const handleSave = () => {
-    props.onEditBooking({chefName: chefDetails.Name, price: Number(chefDetails.Price), hours: Number(NumOfHours), selectedDate, slot});
+    props.onEditBooking({chefName: chefDetails.Name, price: Number(chefDetails.Price),
+      hours: Number(NumOfHours), selectedDate, slot, custName, custEmail});
   }
   
   return (
