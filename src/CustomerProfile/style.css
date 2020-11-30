@@ -1,0 +1,17 @@
+.custDetails h1 {
+  margin-bottom: 0;
+}
+.custDetails .custEmail {
+  display: block;
+  color: blue;
+  display: block;
+  margin-bottom: 5px;
+}
+.custDetails .custContact {
+  color: gray;
+}
+.bookingCustImage {
+  width: 50px;
+  border-radius: 50px;
+  height: 50px;
+}

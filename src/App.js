@@ -15,6 +15,7 @@ import BookingHistory from './BookingHistory';
 import SignUp from './SignUp';
 import ConfirmSignUp from './SignUp/ConfirmSignUp';
 import Lexbot from './Lexbot';
+import CustomerProfile from './CustomerProfile';
 
 Amplify.configure(awsconfig);
 
@@ -26,11 +27,11 @@ function App() {
   return (
     <Router>
       <div className='App'>
-        <Header isLoggedIn={isLoggedIn} onIsLoggedIn={onIsLoggedIn}/>
+        <Header isLoggedIn={isLoggedIn} onIsLoggedIn={onIsLoggedIn} />
         <Container maxWidth={false}>
           <Switch>
             <Route path='/' exact component={HomePage} />
-            <Route path='/signIn' exact component={() => <SignIn onIsLoggedIn={onIsLoggedIn} />}/>
+            <Route path='/signIn' exact component={() => <SignIn onIsLoggedIn={onIsLoggedIn} />} />
             <Route path='/findChef' exact component={FindAChef} />
             <Route path='/bookChef' exact component={BookChef} />
             <Route path='/chefProfile/:chefId' exact component={ChefDetails} />
@@ -39,6 +40,7 @@ function App() {
             {/* <Route path='/confirmSignUp' exact component={ConfirmSignUp} /> */}
             <Route path='/confirmSignUp/:email' exact component={ConfirmSignUp} />
             <Route path='/lexbot' exact component={Lexbot} />
+            <Route path='/custProfile' exact component={CustomerProfile} />
           </Switch>
         </Container>
       </div>

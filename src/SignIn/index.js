@@ -38,7 +38,7 @@ const SignIn = (props) => {
     try {
       const user = await Auth.signIn(emailid, password);
       console.log(user);
-      sessionStorage.setItem("userDetails", JSON.stringify({userEmailId: emailid}));
+      sessionStorage.setItem("userDetails", JSON.stringify({ userEmailId: emailid }));
       props.onIsLoggedIn(true);
       if (sessionStorage.getItem("chefDetails")) {
         history.push("bookChef/");
@@ -101,10 +101,10 @@ const SignIn = (props) => {
               id='password'
               onChange={(e, password) => setPassword(e.target.value)}
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value='remember' color='primary' />}
               label='Remember me'
-            />
+            /> */}
             <Button
               type='submit'
               fullWidth
@@ -116,11 +116,11 @@ const SignIn = (props) => {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
+              {/* <Grid item xs>
                 <Link href='#' variant='body2'>
                   Forgot password?
                 </Link>
-              </Grid>
+              </Grid> */}
               <Grid item>
                 <Link href='/signUp' variant='body2'>
                   {"Don't have an account? Sign Up"}

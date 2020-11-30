@@ -37,8 +37,8 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh'
   },
   image: {
-    // backgroundImage:
-    //   'url(http://d1q6lc2rasmdf5.cloudfront.net/OtherPictures/SignIn.jpg)',
+    backgroundImage:
+      'url(http://d1q6lc2rasmdf5.cloudfront.net/OtherPictures/SignIn.jpg)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light'

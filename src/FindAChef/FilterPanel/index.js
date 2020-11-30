@@ -34,10 +34,11 @@ export const FilterPanel = (props) => {
         }
     };
     const cuisinesList = [
-        "North-Indian" , "Manipuri", "Rajasthani", "South-Indian" ,  "Bengali ", "Maharastrian", "Andhra"
+        "North-Indian", "Manipuri", "Rajasthani", "South-Indian", "Bengali ", "Maharastrian", "Andhra"
     ];
-    const [location, setLocation] = React.useState('');
-    const [people, setPeople] = React.useState('');
+    // const [location, setLocation] = React.useState('');
+    const [location, setLocation] = React.useState();
+    // const [people, setPeople] = React.useState('');
     const [slot, setSlot] = React.useState([]);
     const [selectedDate, setSelectedDate] = React.useState();
     const [cuisine, setCuisine] = React.useState([]);
@@ -48,13 +49,13 @@ export const FilterPanel = (props) => {
     const serchClick = () => {
         const filterQuery = {};
 
-        filterQuery.Location = location !== '' ? location : '';
+        // filterQuery.Location = location !== '' ? location : '';
         filterQuery.Date = selectedDate != null ? selectedDate : '';
-    
+
 
         const formattedCuisine = cuisine.toString();
         filterQuery.Cuisine = formattedCuisine !== '' ? formattedCuisine : '';
-        
+
         filterQuery.Slots = slot.length !== 0 ? slot : '';
         filterQuery.Price = price.length > 0 ? price.map(String) : '';
         filterQuery.Rating = rating !== 0 ? rating.toString() : '';
@@ -65,9 +66,9 @@ export const FilterPanel = (props) => {
             props.onSearch(response);
             console.log('GetChefDataByCriteria', response);
         })
-        .catch(function (error) {
-            console.log('GetChefDataByCriteria error', error);
-        }); 
+            .catch(function (error) {
+                console.log('GetChefDataByCriteria error', error);
+            });
     };
 
     return (
@@ -147,7 +148,7 @@ export const FilterPanel = (props) => {
                         </MenuItem>
                     ))}
                 </Select>
-            </FormControl> : null }
+            </FormControl> : null}
 
             {/* <FormControl className={classes.formControl}>
                 <InputLabel shrink className={classes.selectBoxInput}>

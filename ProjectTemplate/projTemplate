@@ -147,8 +147,13 @@ Services :
 	- Review API Integration
 - Added Book Slot Workflow with the integration
 
-
 ##Prajakta
 - Added UI for Review Section with multiple records
 	- Review API Integration
 - Customer API Integration
+
+##Prajakta
+- Added UI for Customer Profile
+	- Bookings API Integration
+	- Ratings API Integration
+	

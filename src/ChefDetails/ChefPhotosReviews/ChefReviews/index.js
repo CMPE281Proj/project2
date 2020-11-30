@@ -48,7 +48,7 @@ export const ChefReviews = (props) => {
   return (
     <div className={classes.chefReviews}>
       <h3 className={classes.reviewText}>Reviews({chefReviews.length})</h3>
-      {chefReviews.map((review) => (
+      {chefReviews.map((review) => review && review.Comments ? (
       <div className={classes.customerReview}>
         <div className={classes.customerDetails}>
           <img className={classes.customerImage} src={review.Image} alt="Customer" />
@@ -58,8 +58,7 @@ export const ChefReviews = (props) => {
           {review && review.Comments}
         </div>
       </div>
-      ))}
-
+      ) : null)}
     </div>
   );
 }
