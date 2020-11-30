@@ -28,10 +28,10 @@ const BookChef = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [bookingInfo, setBookingInfo] = React.useState({});
   const [paymentInfo, setPaymentInfo] = React.useState({});
-  
+
   const steps = getSteps();
 
-  
+
   function getSteps() {
     return ['Edit Booking', 'Payment', 'Confirm Booking', 'Finish'];
   }
@@ -39,11 +39,11 @@ const BookChef = () => {
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <EditBooking onEditBooking={(bookingInfo) => setBookingInfo(bookingInfo)} paymentInfo={paymentInfo} bookingInfo={bookingInfo}/>;
+        return <EditBooking onEditBooking={(bookingInfo) => setBookingInfo(bookingInfo)} paymentInfo={paymentInfo} bookingInfo={bookingInfo} />;
       case 1:
-        return <PaymentForm onPaymentFormUpdate={(paymentInfo) => setPaymentInfo(paymentInfo)} bookingInfo={bookingInfo} paymentInfo={paymentInfo}/>;
+        return <PaymentForm onPaymentFormUpdate={(paymentInfo) => setPaymentInfo(paymentInfo)} bookingInfo={bookingInfo} paymentInfo={paymentInfo} />;
       case 2:
-        return <ConfirmBooking bookingInfo={bookingInfo} paymentInfo={paymentInfo}/>;
+        return <ConfirmBooking bookingInfo={bookingInfo} paymentInfo={paymentInfo} />;
       default:
         return 'Finish';
     }
