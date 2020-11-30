@@ -176,8 +176,8 @@ const SignUp = () => {
             </Button>
             <Grid container justify='flex-end'>
               <Grid item>
-                <Link to='/signIn' variant='body2'>
-                  Already have an account? Sign in
+                <Link href='/signIn' variant='body2'>
+                  Already have an account? Sign in !
                 </Link>
               </Grid>
             </Grid>

@@ -26,11 +26,11 @@ function App() {
   return (
     <Router>
       <div className='App'>
-        <Header isLoggedIn={isLoggedIn} onIsLoggedIn={onIsLoggedIn}/>
+        <Header isLoggedIn={isLoggedIn} onIsLoggedIn={onIsLoggedIn} />
         <Container maxWidth={false}>
           <Switch>
             <Route path='/' exact component={HomePage} />
-            <Route path='/signIn' exact component={() => <SignIn onIsLoggedIn={onIsLoggedIn} />}/>
+            <Route path='/signIn' exact component={() => <SignIn onIsLoggedIn={onIsLoggedIn} />} />
             <Route path='/findChef' exact component={FindAChef} />
             <Route path='/bookChef' exact component={BookChef} />
             <Route path='/chefProfile/:chefId' exact component={ChefDetails} />
