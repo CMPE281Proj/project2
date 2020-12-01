@@ -24,13 +24,11 @@ const ChatPopper = () => {
             <Button style={style} variant='contained' color='secondary' {...bindToggle(popupState)}>
               <ChatOutlinedIcon />
             </Button>
-            <Popper {...bindPopper(popupState)} transition>
+            <Popper {...bindPopper(popupState)}>
               {({ TransitionProps }) => (
-                <Fade {...TransitionProps} timeout={3500}>
-                  <Paper>
-                    <Lexbot />
-                  </Paper>
-                </Fade>
+                <Paper>
+                  <Lexbot />
+                </Paper>
               )}
             </Popper>
           </div>
