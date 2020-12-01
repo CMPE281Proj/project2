@@ -17,7 +17,8 @@ const GetDefaultChefData = (event) => {
               Price: element.Price.N,
               Rating: element.Rating.N,
               Zipcode: element.Zipcode.N,
-              Image: 'http://d1q6lc2rasmdf5.cloudfront.net/ChefPictures/ChefProfilePics/' + element.Email.S + '.jpg'
+              Image: 'http://d1q6lc2rasmdf5.cloudfront.net/ChefPictures/ChefProfilePics/' + element.Email.S + '.jpg',
+              TotalNumberOfCustomersReviewed: element.TotalNumberOfCustomersReviewed.N
             });
           });
           resolve({ defaultChefData });

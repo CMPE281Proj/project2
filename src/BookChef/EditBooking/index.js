@@ -45,18 +45,22 @@ const EditHistory = (props) => {
     setSlot(slot);
     if (selectedDate in chefDetails.ChefSlots && chefDetails.ChefSlots[selectedDate].includes(slot)) {
       alert('Slot not Available. Please select some other Slot');
+    } else {
+      handleSave(slot);
     }
   }
 
-  const handleSave = () => {
+  const handleSave = (slot) => {
     if (selectedDate in chefDetails.ChefSlots) {
       chefDetails.ChefSlots[selectedDate].push(slot);
     } else {
       chefDetails.ChefSlots[selectedDate] = [slot];
     }
     console.log("chefDetails.ChefSlots", chefDetails.ChefSlots);
-    props.onEditBooking({chefName: chefDetails.Name, price: Number(chefDetails.Price), chefEmail: chefDetails.Email,
-      hours: Number(NumOfHours), selectedDate, slot, custName, custEmail, updatedChefSlots: chefDetails.ChefSlots});
+    props.onEditBooking({
+      chefName: chefDetails.Name, price: Number(chefDetails.Price), chefEmail: chefDetails.Email,
+      hours: Number(NumOfHours), selectedDate, slot, custName, custEmail, updatedChefSlots: chefDetails.ChefSlots
+    });
   }
 
   return (
@@ -102,6 +106,7 @@ const EditHistory = (props) => {
         <Grid item xs={12} >
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker
+              disablePast='false'
               disableToolbar
               variant='inline'
               format='MM/dd/yyyy'
@@ -127,12 +132,6 @@ const EditHistory = (props) => {
           </FormControl>
         </Grid>
       </Grid>
-      <Button
-        onClick={handleSave}
-        className="buttonSave"
-      >
-        Save
-      </Button>
     </Container>
   );
 };

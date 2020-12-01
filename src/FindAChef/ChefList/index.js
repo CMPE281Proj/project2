@@ -100,7 +100,7 @@ export const ChefList = (props) => {
                                 </div>
                                 <div className={classes.reviewRating}>
                                     <span className={classes.chefReviews}>
-                                        {chef.reviews ? chef.reviews : 0} Reviews
+                                        {chef.TotalNumberOfCustomersReviewed ? chef.TotalNumberOfCustomersReviewed : 0} Reviews
                                     </span>
                                     <Rating
                                         value={chef.Rating}

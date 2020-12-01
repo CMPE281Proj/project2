@@ -58,8 +58,10 @@ export const FilterPanel = (props) => {
 
         filterQuery.Slots = slot.length !== 0 ? slot : '';
         filterQuery.Price = price.length > 0 ? price.map(String) : '';
+
         filterQuery.Rating = rating !== 0 ? rating.toString() : '';
         filterQuery.Experience = experience !== '' ? experience : '';
+
         console.log('filterQuery', filterQuery);
 
         GetChefDataByCriteria(filterQuery).then(function (response) {
@@ -88,6 +90,7 @@ export const FilterPanel = (props) => {
             {/* Date Input Field */}
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardDatePicker
+                    disablePast='false'
                     disableToolbar
                     variant='inline'
                     format='MM/dd/yyyy'
