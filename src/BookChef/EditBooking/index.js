@@ -57,8 +57,10 @@ const EditHistory = (props) => {
       chefDetails.ChefSlots[selectedDate] = [slot];
     }
     console.log("chefDetails.ChefSlots", chefDetails.ChefSlots);
-    props.onEditBooking({chefName: chefDetails.Name, price: Number(chefDetails.Price), chefEmail: chefDetails.Email,
-      hours: Number(NumOfHours), selectedDate, slot, custName, custEmail, updatedChefSlots: chefDetails.ChefSlots});
+    props.onEditBooking({
+      chefName: chefDetails.Name, price: Number(chefDetails.Price), chefEmail: chefDetails.Email,
+      hours: Number(NumOfHours), selectedDate, slot, custName, custEmail, updatedChefSlots: chefDetails.ChefSlots
+    });
   }
 
   return (
@@ -104,6 +106,7 @@ const EditHistory = (props) => {
         <Grid item xs={12} >
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker
+              disablePast='false'
               disableToolbar
               variant='inline'
               format='MM/dd/yyyy'

@@ -7,6 +7,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import { useHistory } from 'react-router-dom';
 
 import PutCustomerBookings from './PutCustomerBookings';
 import UpdateChefTableSlot from './UpdateChefTableSlot';
@@ -23,23 +26,46 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const Alert = (props) => {
+  return <MuiAlert elevation={6} variant='filled' {...props} />;
+}
+
 const ReviewBooking = (props) => {
   const classes = useStyles();
+  const [disableButton, setDisableButton] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [confirmMessage, setConfirmMessage] = React.useState('');
+
+  const history = useHistory();
+  const userDetails = JSON.parse(sessionStorage.getItem('userDetails'));
   const bookingInfo = props.bookingInfo;
   const paymentInfo = props.paymentInfo;
   const totalPrice = bookingInfo ? bookingInfo.price * bookingInfo.hours : 0;
   const addresses = [
-    '1 Material-UI Drive',
-    'Reactville',
-    'Anytown',
-    '99999',
+    'North Park Village',
+    'San Jose',
+    'CA',
+    '95134',
     'USA'
   ];
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+
+    const path = '/custProfile';
+
+    history.push({
+      pathname: path
+    })
+  };
 
   const submitBookingInfo = (totalPrice) => {
     const customerBookings = {}
     const bookingID = new Date().getTime();
-    const userDetails = JSON.parse(sessionStorage.getItem('userDetails'));
+    setDisableButton(true);
     console.log(userDetails);
 
     customerBookings.bookingID = bookingID;
@@ -53,22 +79,32 @@ const ReviewBooking = (props) => {
     customerBookings.custEmail = userDetails.userEmailId;
     PutCustomerBookings(customerBookings).then(function (response) {
       console.log('PutCustomerBookings', response);
-      UpdateChefTableSlot({email: bookingInfo.chefEmail, updatedChefSlots: bookingInfo.updatedChefSlots}).then(function (response) {
+      UpdateChefTableSlot({ email: bookingInfo.chefEmail, updatedChefSlots: bookingInfo.updatedChefSlots }).then(function (response) {
         console.log('UpdateChefTableSlot', response);
-        alert("Your Booking Number "+ bookingID +" is Confirmed!");
+        // alert("Your Booking Number " + bookingID + " is Confirmed!");
+        setConfirmMessage("Your Reservation for" + customerBookings.chefName + "has been confirmed, Booking Number: " + bookingID);
+        setOpen(true);
+
       })
-      .catch(function (error) {
+        .catch(function (error) {
           console.log('UpdateChefTableSlot error', error);
-      });
+          setDisableButton(false);
+        });
     })
       .catch(function (error) {
         console.log('PutCustomerBookings error', error);
+        setDisableButton(true);
       });
 
   }
   return (
     <Container maxWidth={"sm"} className="bookingContainer">
       <React.Fragment>
+        <Snackbar open={open} autoHideDuration={60000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity='success'>
+            {confirmMessage}
+          </Alert>
+        </Snackbar>
         <Typography variant='h6' gutterBottom>
           Booking summary
         </Typography>
@@ -87,9 +123,9 @@ const ReviewBooking = (props) => {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <Typography variant='h6' gutterBottom className={classes.title}>
-              Shipping
+              Shipping Address
             </Typography>
-            <Typography gutterBottom>John Smith</Typography>
+            <Typography gutterBottom>{bookingInfo.custName}</Typography>
             <Typography gutterBottom>{addresses.join(', ')}</Typography>
           </Grid>
           <Grid item container direction='column' xs={12} sm={6}>
@@ -122,6 +158,7 @@ const ReviewBooking = (props) => {
         </Grid>
       </React.Fragment>
       <Button
+        disabled={disableButton}
         onClick={() => submitBookingInfo(totalPrice)}
         className="buttonSave"
       >
