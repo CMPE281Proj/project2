@@ -16,6 +16,7 @@ import SignUp from './SignUp';
 import ConfirmSignUp from './SignUp/ConfirmSignUp';
 import Lexbot from './Lexbot';
 import CustomerProfile from './CustomerProfile';
+import ChatPopper from './ChatPopper';
 
 Amplify.configure(awsconfig);
 
@@ -42,9 +43,9 @@ function App() {
             <Route path='/lexbot' exact component={Lexbot} />
             <Route path='/custProfile' exact component={CustomerProfile} />
           </Switch>
+          <ChatPopper />
         </Container>
       </div>
-
     </Router>
   );
 }

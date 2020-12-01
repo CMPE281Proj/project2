@@ -1,6 +1,6 @@
 import React from 'react';
 import Amplify, { Interactions } from 'aws-amplify';
-import { ChatBot } from 'aws-amplify-react';
+import { ChatBot, AmplifyTheme } from 'aws-amplify-react';
 import awsconfig from '../aws-exports';
 
 Amplify.configure(awsconfig);
@@ -10,11 +10,18 @@ Amplify.configure({
       'BookChef': {
         'name': 'BookChef',
         'alias': 'firstRelease',
-        'region': 'us-east-1',
+        'region': 'us-east-1'
       }
     }
   }
 });
+const myTheme = {
+  ...AmplifyTheme,
+  sectionHeader: {
+    ...AmplifyTheme.sectionHeader,
+    backgroundColor: '#ff6600'
+  }
+};
 
 const Lexbot = () => {
   const handleComplete = (err, confirmation) => {
@@ -29,14 +36,14 @@ const Lexbot = () => {
 
   return (
     <div>
-      <p>test</p>
       <ChatBot
         title='Find My Chef'
+        theme={myTheme}
         botName='BookChef'
-        welcomeMessage='Hi !!'
+        welcomeMessage='Hi !! How can I help you ?'
         onComplete={handleComplete}
         // clearOnComplete='true'
-        conversationModeOn='true'
+        conversationModeOn={true}
       />
     </div>
   )

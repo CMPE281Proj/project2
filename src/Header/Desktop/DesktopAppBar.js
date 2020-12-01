@@ -9,7 +9,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import MenuItem from '@material-ui/core/MenuItem';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import PersonIcon from '@material-ui/icons/Person';
-
+// import ChatIcon from '@material-ui/icons/Chat';
 
 const useStyles = makeStyles((theme) => ({
   sectionDesktop: {
@@ -57,14 +57,14 @@ export const DesktopAppBar = (props) => {
           <p>History</p>
         </MenuItem>
       </Link> : null}
-      <Link to="/lexbot" style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>
+      {/* <Link to="/lexbot" style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>
         <MenuItem>
           <IconButton aria-label="bookmark" color="inherit">
-            <BookmarkIcon />
+            <ChatIcon />
           </IconButton>
           <p>Chat</p>
         </MenuItem>
-      </Link>
+      </Link> */}
       { loggedInUser ? <MenuItem onClick={props.setAnchorEl}>
         <IconButton
           aria-label="account of current user"
