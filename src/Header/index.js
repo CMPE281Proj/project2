@@ -88,10 +88,10 @@ export const Header = (props) => {
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon />
+            {/* <MenuIcon /> */}
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link to='/' style={{ textDecoration: 'none', display: 'block', color: "inherit" }}> My Chef</Link>
+            <Link to='/' style={{ textDecoration: 'none', display: 'block', color: "inherit" }}> Find My Chef</Link>
           </Typography>
           {/* <div className={classes.search}>
             <div className={classes.searchIcon}>

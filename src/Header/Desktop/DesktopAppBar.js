@@ -46,7 +46,7 @@ export const DesktopAppBar = (props) => {
           <IconButton aria-label="search" color="inherit">
             <SearchIcon />
           </IconButton>
-          <p>Find Chef</p>
+          <p>Find My Chef</p>
         </MenuItem>
       </Link>
       {loggedInUser ? <Link to="/history" style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>

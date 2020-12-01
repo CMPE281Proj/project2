@@ -82,7 +82,7 @@ const ReviewBooking = (props) => {
       UpdateChefTableSlot({ email: bookingInfo.chefEmail, updatedChefSlots: bookingInfo.updatedChefSlots }).then(function (response) {
         console.log('UpdateChefTableSlot', response);
         // alert("Your Booking Number " + bookingID + " is Confirmed!");
-        setConfirmMessage("Your Reservation for" + customerBookings.chefName + "has been confirmed, Booking Number: " + bookingID);
+        setConfirmMessage("Your Reservation for" + customerBookings.chefName + "has been confirmed with Booking Number: " + bookingID + ". Please check your Email for confirmation");
         setOpen(true);
 
       })
@@ -106,7 +106,7 @@ const ReviewBooking = (props) => {
           </Alert>
         </Snackbar>
         <Typography variant='h6' gutterBottom>
-          Booking summary
+          Booking Summary
         </Typography>
         <List disablePadding>
           <ListItem className={classes.listItem}>
