@@ -55,6 +55,7 @@ const ReviewBooking = (props) => {
       console.log('PutCustomerBookings', response);
       UpdateChefTableSlot({email: bookingInfo.chefEmail, updatedChefSlots: bookingInfo.updatedChefSlots}).then(function (response) {
         console.log('UpdateChefTableSlot', response);
+        alert("Your Booking Number "+ bookingID +" is Confirmed!");
       })
       .catch(function (error) {
           console.log('UpdateChefTableSlot error', error);

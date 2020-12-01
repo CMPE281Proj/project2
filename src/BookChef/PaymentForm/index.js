@@ -66,6 +66,7 @@ const PaymentForm = (props) => {
               helperText='Last three digits on signature strip'
               fullWidth
               autoComplete='cc-csc'
+              onBlur={handleSave}
             />
           </Grid>
           <Grid item xs={12}>
@@ -75,12 +76,6 @@ const PaymentForm = (props) => {
             />
           </Grid>
         </Grid>
-        <Button
-          onClick={handleSave}
-          className="buttonSave"
-        >
-          Save
-        </Button>
       </React.Fragment>
     </Container>
   );

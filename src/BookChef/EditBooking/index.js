@@ -45,10 +45,12 @@ const EditHistory = (props) => {
     setSlot(slot);
     if (selectedDate in chefDetails.ChefSlots && chefDetails.ChefSlots[selectedDate].includes(slot)) {
       alert('Slot not Available. Please select some other Slot');
+    } else {
+      handleSave(slot);
     }
   }
 
-  const handleSave = () => {
+  const handleSave = (slot) => {
     if (selectedDate in chefDetails.ChefSlots) {
       chefDetails.ChefSlots[selectedDate].push(slot);
     } else {
@@ -127,12 +129,6 @@ const EditHistory = (props) => {
           </FormControl>
         </Grid>
       </Grid>
-      <Button
-        onClick={handleSave}
-        className="buttonSave"
-      >
-        Save
-      </Button>
     </Container>
   );
 };
