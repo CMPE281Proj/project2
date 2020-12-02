@@ -3,7 +3,7 @@ import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import { Button } from '@material-ui/core';
 import PopupState, { bindToggle, bindPopper } from 'material-ui-popup-state';
 import Popper from '@material-ui/core/Popper';
-import Fade from '@material-ui/core/Fade';
+// import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 import Lexbot from '../Lexbot';
 

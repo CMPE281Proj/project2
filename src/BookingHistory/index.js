@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import Button from '@material-ui/core/Button';
 import GetCustomerBookingInfo from './GetCustomerBookingInfo';
@@ -36,40 +36,41 @@ const BookingHistory = (props) => {
     { field: 'ChefName', headerName: 'Chef Name', width: 120 },
     { field: 'ChefEmail', headerName: 'Chef Email', width: 180 },
     { field: 'Date', headerName: 'Date', width: 120 },
-    
+
     { field: 'Slot', headerName: 'Slot', width: 130 },
-    { field: 'TotalPrice', headerName: 'Total Price', width: 100 },
-    
+
     {
       field: 'NumberOfHoursBooked',
       headerName: 'Hours',
       width: 80,
     },
+    { field: 'TotalPrice', headerName: 'Total Price', width: 100 },
+    { field: 'PaymentStatus', headerName: 'Payment Status', width: 100 },
     {
       field: 'NumberOfHoursBooked',
       headerName: 'Review and Rate',
       width: 150,
       renderCell: (params) => (
         <Button color="primary" variant="contained" size="small" onClick={() => handleClickOpen(params.getValue("BookingId"))}>
-            Rate
+          Rate
         </Button>
       ),
     },
   ];
-  
+
   const [bookingDetails, setBookingDetails] = React.useState([]);
 
-  useEffect(() => {    
+  useEffect(() => {
     if (props.custName) {
       GetCustomerBookingInfo(props.custName).then(function (response) {
         console.log("GetCustomerBookingInfo", response.bookingInfo);
         setBookingDetails(response);
       })
-      .catch(function (error) {
-        console.log('GetCustomerBookingInfo error', error);
-        setBookingDetails([]);
-      });
-    } 
+        .catch(function (error) {
+          console.log('GetCustomerBookingInfo error', error);
+          setBookingDetails([]);
+        });
+    }
   }, [props.custName]);
 
   const onSubmitRatings = () => {
@@ -81,48 +82,48 @@ const BookingHistory = (props) => {
       console.log("UpdateRatingReview", response.bookingInfo);
       setOpen(false);
     })
-    .catch(function (error) {
-      console.log('UpdateRatingReview error', error);
-    });
+      .catch(function (error) {
+        console.log('UpdateRatingReview error', error);
+      });
   }
   return (
-      <div style={{ height: 400, width: '100%' }}>
-        <DataGrid rows={bookingDetails} columns={columns} pageSize={5} />
+    <div style={{ height: 400, width: '100%' }}>
+      <DataGrid rows={bookingDetails} columns={columns} pageSize={5} />
 
-        <div>
-          <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title">Rate Chef</DialogTitle>
-            <DialogContent>
-              <Rating
-                  name='simple-controlled'
-                  value={rating}
-                  onChange={(event, newValue) => {
-                    setRating(newValue);
-                  }}
-                  size='large'
-              />
-              <TextField
-                autoFocus
-                margin="dense"
-                id="name"
-                label="Add Review"
-                // type="email"
-                value={review}
-                fullWidth
-                onChange={(e) => setReview(e.target.value)}
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose} color="primary">
-                Cancel
+      <div>
+        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+          <DialogTitle id="form-dialog-title">Rate Chef</DialogTitle>
+          <DialogContent>
+            <Rating
+              name='simple-controlled'
+              value={rating}
+              onChange={(event, newValue) => {
+                setRating(newValue);
+              }}
+              size='large'
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Add Review"
+              // type="email"
+              value={review}
+              fullWidth
+              onChange={(e) => setReview(e.target.value)}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
               </Button>
-              <Button onClick={onSubmitRatings} color="primary" variant="contained">
-                Submit
+            <Button onClick={onSubmitRatings} color="primary" variant="contained">
+              Submit
               </Button>
-            </DialogActions>
-          </Dialog>
-        </div>        
+          </DialogActions>
+        </Dialog>
       </div>
+    </div>
   );
 }
 
