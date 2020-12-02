@@ -36,8 +36,7 @@ export const FilterPanel = (props) => {
     const cuisinesList = [
         "North-Indian", "Manipuri", "Rajasthani", "South-Indian", "Bengali ", "Maharastrian", "Andhra"
     ];
-    // const [location, setLocation] = React.useState('');
-    const [location, setLocation] = React.useState();
+    const [location, setLocation] = React.useState('');
     // const [people, setPeople] = React.useState('');
     const [slot, setSlot] = React.useState([]);
     const [selectedDate, setSelectedDate] = React.useState();
@@ -49,7 +48,7 @@ export const FilterPanel = (props) => {
     const serchClick = () => {
         const filterQuery = {};
 
-        // filterQuery.Location = location !== '' ? location : '';
+        filterQuery.Location = location !== '' ? location : '';
         filterQuery.Date = selectedDate != null ? selectedDate : '';
 
 
@@ -58,10 +57,8 @@ export const FilterPanel = (props) => {
 
         filterQuery.Slots = slot.length !== 0 ? slot : '';
         filterQuery.Price = price.length > 0 ? price.map(String) : '';
-
         filterQuery.Rating = rating !== 0 ? rating.toString() : '';
         filterQuery.Experience = experience !== '' ? experience : '';
-
         console.log('filterQuery', filterQuery);
 
         GetChefDataByCriteria(filterQuery).then(function (response) {
@@ -90,7 +87,6 @@ export const FilterPanel = (props) => {
             {/* Date Input Field */}
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardDatePicker
-                    disablePast='false'
                     disableToolbar
                     variant='inline'
                     format='MM/dd/yyyy'

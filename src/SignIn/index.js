@@ -44,7 +44,7 @@ const SignIn = (props) => {
         history.push("bookChef/");
       }
       else
-        history.push("bookingHistory/");
+        history.push("custProfile/");
     } catch (error) {
       setErrorMessage(error.message);
 
