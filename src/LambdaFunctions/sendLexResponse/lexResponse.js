@@ -1,17 +1,17 @@
 'use strict';
 
-module.exports.delegate = function(sessionAttributes, slots) {
+module.exports.delegate = function (sessionAttributes, slots) {
     // const message = 'Y'
     return {
         sessionAttributes,
-        dialogAction : {
+        dialogAction: {
             type: 'Delegate',
             slots,
         },
     }
 }
 
-module.exports.elicitSlot = function(sessionAttributes, intentName, slots, slotToElicit, message) {
+module.exports.elicitSlot = function (sessionAttributes, intentName, slots, slotToElicit, message) {
     return {
         sessionAttributes,
         dialogAction: {
@@ -19,6 +19,17 @@ module.exports.elicitSlot = function(sessionAttributes, intentName, slots, slotT
             intentName,
             slots,
             slotToElicit,
+            message,
+        }
+    }
+}
+
+module.exports.close = function (sessionAttributes, fulfillmentState, message) {
+    return {
+        sessionAttributes,
+        dialogAction: {
+            type: 'Close',
+            fulfillmentState,
             message,
         }
     }
