@@ -19,7 +19,7 @@ const myTheme = {
   ...AmplifyTheme,
   sectionHeader: {
     ...AmplifyTheme.sectionHeader,
-    backgroundColor: '#ff6600'
+    backgroundColor: '#3f51b5'
   }
 };
 
