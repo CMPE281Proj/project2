@@ -50,7 +50,7 @@ const mainFeaturedPost = {
   title: 'Home Food!!',
   description:
     "Your favorite food from your favorite Chefs in your KITCHEN!",
-  image: 'https://findmychefs.s3.amazonaws.com/OtherPictures/featuredPost.jpg',
+  image: 'http://d1q6lc2rasmdf5.cloudfront.net/OtherPictures/featuredPost.jpg',
   imgText: 'main image description',
 };
 
@@ -60,7 +60,7 @@ const featuredPosts = [
     // date: 'Nov 12',
     description:
       'Spread the happiness with your delicious food!',
-    image: 'https://findmychefs.s3.amazonaws.com/pics/3.jpg',
+    image: 'http://d1q6lc2rasmdf5.cloudfront.net/pics/3.jpg',
     imageText: 'Image Text',
     linkText: '/applyJob',
     linkVal: 'Apply Now!'
@@ -70,7 +70,7 @@ const featuredPosts = [
     // date: 'Nov 11',
     description:
       'Find your Chef now !!',
-    image: 'https://findmychefs.s3.amazonaws.com/pics/chefPic.jpg',
+    image: 'http://d1q6lc2rasmdf5.cloudfront.net/pics/chefPic.jpg',
     imageText: 'Image Text',
     linkText: '/findchef',
     linkVal: 'Find Chef!'

@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
     marginBottom: theme.spacing(12),
-    backgroundImage: 'https://findmychefs.s3.amazonaws.com/OtherPictures/2.jpg',
+    backgroundImage: 'http://d1q6lc2rasmdf5.cloudfront.net/OtherPictures/2.jpg',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     padding: 50
