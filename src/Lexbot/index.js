@@ -10,7 +10,8 @@ Amplify.configure({
       'BookChef': {
         'name': 'BookChef',
         'alias': 'firstRelease',
-        'region': 'us-east-1'
+        'region': 'us-east-1',
+        'userId': 'mediumBot' + Date.now()
       }
     }
   }
