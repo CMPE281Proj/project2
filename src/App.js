@@ -18,6 +18,7 @@ import Lexbot from './Lexbot';
 import CustomerProfile from './CustomerProfile';
 import ChatPopper from './ChatPopper';
 import Test from './Test';
+import ApplyNow from './ApplyNow';
 
 Amplify.configure(awsconfig);
 
@@ -43,6 +44,7 @@ function App() {
             <Route path='/confirmSignUp/:email' exact component={ConfirmSignUp} />
             <Route path='/lexbot' exact component={Lexbot} />
             <Route path='/custProfile' exact component={CustomerProfile} />
+            <Route path='/applyJob' exact component={ApplyNow} />
             {/* <Route path='/test' exact component={Test} /> */}
           </Switch>
           <ChatPopper />
