@@ -15,9 +15,9 @@ const PaymentForm = (props) => {
   const [expDate, setExpDate] = React.useState(props.paymentInfo.expDate);
 
   const handleSave = () => {
-    props.onPaymentFormUpdate({cardName, cardNumber, expDate});
+    props.onPaymentFormUpdate({ cardName, cardNumber, expDate });
   }
-  
+
   return (
     <Container maxWidth={"sm"} className="bookingContainer">
       <React.Fragment>
@@ -70,10 +70,10 @@ const PaymentForm = (props) => {
             />
           </Grid>
           <Grid item xs={12}>
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox color='secondary' name='saveCard' value='yes' />}
               label='Remember credit card details for next time'
-            />
+            /> */}
           </Grid>
         </Grid>
       </React.Fragment>

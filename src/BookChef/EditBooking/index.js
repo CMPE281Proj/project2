@@ -103,7 +103,7 @@ const EditHistory = (props) => {
             onChange={(event) => setNumOfHours(event.target.value)}
           />
         </Grid>
-        <Grid item xs={12} >
+        <Grid item xs={12}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker
               disablePast='false'
@@ -119,17 +119,19 @@ const EditHistory = (props) => {
 
         </Grid>
         <Grid item xs={12}>
-          <FormControl>
-            <InputLabel>Slot</InputLabel>
-            <Select
-              value={slot}
-              onChange={(event) => onSlotchange(event.target.value)}
-            >
-              {slotList.map((s, index) => {
-                return <MenuItem value={s}>{s}</MenuItem>
-              })}
-            </Select>
-          </FormControl>
+          <InputLabel>Select Slot</InputLabel>
+          <Select
+            value={slot}
+            autoWidth
+            onChange={(event) => onSlotchange(event.target.value)}
+          >
+            {slotList.map((s, index) => {
+              return <MenuItem value={s}>{s}</MenuItem>
+            })}
+          </Select>
+          {/* <FormControl>
+            
+          </FormControl> */}
         </Grid>
       </Grid>
     </Container>
