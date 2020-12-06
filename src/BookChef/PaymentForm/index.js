@@ -78,10 +78,10 @@ const PaymentForm = (props) => {
         return actions.order.create({
           intent: "CAPTURE",
           purchase_units: [{
-            description: "cool looking table",
+            description: "FindMyChefReservation",
             amount: {
               currency_code: "USD",
-              value: 650.00
+              value: 0.00 //update with the chef price
             }
           }]
 
