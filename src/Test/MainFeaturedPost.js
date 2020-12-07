@@ -9,17 +9,20 @@ import Link from '@material-ui/core/Link';
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
     position: 'relative',
-    backgroundColor: theme.palette.grey[800],
-    color: theme.palette.common.white,
+    // display: 'flex',
+    // backgroundColor: theme.palette.grey[800],
+    // color: "#ffffff",
     marginBottom: theme.spacing(12),
-    backgroundImage: 'http://d1q6lc2rasmdf5.cloudfront.net/OtherPictures/2.jpg',
+    backgroundImage: 'http://d1q6lc2rasmdf5.cloudfront.net/OtherPictures/background1.jpg',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    padding: 50
+    padding: 50,
+
     // backgroundPosition: 'center',
   },
   mainFeaturedPostContent: {
     position: 'relative',
+    // display: 'flex',
     padding: theme.spacing(3),
     [theme.breakpoints.up('md')]: {
       padding: theme.spacing(6),
@@ -35,16 +38,14 @@ const MainFeaturedPost = (props) => {
 
   return (
     <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${post.image})` }}>
-      {/* Increase the priority of the hero background image */}
-      {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
-      <div className={classes.overlay} />
+      <div />
       <Grid container>
         <Grid item md={6}>
           <div className={classes.mainFeaturedPostContent}>
             <Typography component="h1" variant="h3" color="inherit" gutterBottom>
               {post.title}
             </Typography>
-            <Typography variant="h5" color="inherit" paragraph>
+            <Typography variant="h5" color="#ffffff" paragraph >
               {post.description}
             </Typography>
             <Link variant="subtitle1" href="/findchef">

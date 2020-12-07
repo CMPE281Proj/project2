@@ -81,7 +81,7 @@ const PaymentForm = (props) => {
             description: "FindMyChefReservation",
             amount: {
               currency_code: "USD",
-              value: 0.00 //update with the chef price
+              value: 1.00 //update with the chef price
             }
           }]
 

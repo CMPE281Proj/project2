@@ -9,16 +9,15 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: `url(${process.env.PUBLIC_URL + '/assets/background1.jpg'})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
- 
-   },
+
+  },
 }));
 export default function HomePage() {
   const classes = useStyles();
   return (
     <div className={classes.homepage}>
       <CssBaseline />
-      <HomeText/>
-  
+      <HomeText />
     </div>
   );
 }

@@ -50,7 +50,7 @@ const mainFeaturedPost = {
   title: 'Home Food!!',
   description:
     "Your favorite food from your favorite Chefs in your KITCHEN!",
-  image: 'http://d1q6lc2rasmdf5.cloudfront.net/OtherPictures/featuredPost.jpg',
+  image: 'http://d1q6lc2rasmdf5.cloudfront.net/OtherPictures/background1.jpg',
   imgText: 'main image description',
 };
 
