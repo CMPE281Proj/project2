@@ -10,8 +10,9 @@ import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import { withStyles } from '@material-ui/core/styles';
-
+import { PayPalButton } from "react-paypal-button-v2";
 import '../style.css';
+import { useHistory } from 'react-router-dom';
 
 // const Accordion = withStyles({
 //   root: {
@@ -60,9 +61,12 @@ const PaymentForm = (props) => {
   const [cardName, setCardName] = React.useState(props.paymentInfo.cardName);
   const [cardNumber, setCardNumber] = React.useState(props.paymentInfo.cardNumber);
   const [expDate, setExpDate] = React.useState(props.paymentInfo.expDate);
+  // const tp = ;
+  const [totalPrice, setTotalPrice] = React.useState(props.bookingInfo.price * props.bookingInfo.hours);
   // const [expanded, setExpanded] = React.useState('panel1');
   // const [usePP, setUsePP] = React.useState(false);
   const paypal = useRef();
+  const history = useHistory();
 
   const handleSave = () => {
     props.onPaymentFormUpdate({ cardName, cardNumber, expDate });
@@ -73,6 +77,10 @@ const PaymentForm = (props) => {
   // };
 
   useEffect(() => {
+    // e.preventDefault()
+    console.log(props);
+    console.log(totalPrice);
+    setTotalPrice(props.bookingInfo.price * props.bookingInfo.hours);
     window.paypal.Buttons({
       createOrder: (data, actions, err) => {
         return actions.order.create({
@@ -81,15 +89,17 @@ const PaymentForm = (props) => {
             description: "FindMyChefReservation",
             amount: {
               currency_code: "USD",
-              value: 1.00 //update with the chef price
+              value: totalPrice ? totalPrice : 40.00 //update with the chef price
             }
           }]
-
         })
       },
       onApprove: async (data, actions) => {
         const order = await actions.order.capture()
         console.log(order)
+        actions.disable();
+        alert('Payment successful')
+        // history.push('/reviewBooking');
       },
       onError: (err) => {
         console.log(err)
