@@ -57,14 +57,6 @@ export const DesktopAppBar = (props) => {
           <p>History</p>
         </MenuItem>
       </Link> : null}
-      {/* <Link to="/lexbot" style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>
-        <MenuItem>
-          <IconButton aria-label="bookmark" color="inherit">
-            <ChatIcon />
-          </IconButton>
-          <p>Chat</p>
-        </MenuItem>
-      </Link> */}
       { loggedInUser ? <MenuItem onClick={props.setAnchorEl}>
         <IconButton
           aria-label="account of current user"

@@ -82,7 +82,7 @@ const ReviewBooking = (props) => {
       UpdateChefTableSlot({ email: bookingInfo.chefEmail, updatedChefSlots: bookingInfo.updatedChefSlots }).then(function (response) {
         console.log('UpdateChefTableSlot', response);
         // alert("Your Booking Number " + bookingID + " is Confirmed!");
-        setConfirmMessage("Your Reservation for" + customerBookings.chefName + "has been confirmed with Booking Number: " + bookingID + ". Please check your Email for confirmation");
+        setConfirmMessage("Your Reservation for " + customerBookings.chefName + " has been confirmed with Booking Number: " + bookingID + ". Please check your Email!");
         setOpen(true);
 
       })
@@ -128,7 +128,7 @@ const ReviewBooking = (props) => {
             <Typography gutterBottom>{bookingInfo.custName}</Typography>
             <Typography gutterBottom>{addresses.join(', ')}</Typography>
           </Grid>
-          <Grid item container direction='column' xs={12} sm={6}>
+          {/* <Grid item container direction='column' xs={12} sm={6}>
             <Typography variant='h6' gutterBottom className={classes.title}>
               Payment details
             </Typography>
@@ -154,7 +154,7 @@ const ReviewBooking = (props) => {
                 </Grid>
               </React.Fragment>
             </Grid>
-          </Grid>
+          </Grid> */}
         </Grid>
       </React.Fragment>
       <Button

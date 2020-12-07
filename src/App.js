@@ -17,6 +17,9 @@ import ConfirmSignUp from './SignUp/ConfirmSignUp';
 import Lexbot from './Lexbot';
 import CustomerProfile from './CustomerProfile';
 import ChatPopper from './ChatPopper';
+import Test from './Test';
+import ApplyNow from './ApplyNow';
+import ReviewBooking from './BookChef/ReviewBooking';
 
 Amplify.configure(awsconfig);
 
@@ -31,7 +34,7 @@ function App() {
         <Header isLoggedIn={isLoggedIn} onIsLoggedIn={onIsLoggedIn} />
         <Container maxWidth={false}>
           <Switch>
-            <Route path='/' exact component={HomePage} />
+            <Route path='/' exact component={Test} />
             <Route path='/signIn' exact component={() => <SignIn onIsLoggedIn={onIsLoggedIn} />} />
             <Route path='/findChef' exact component={FindAChef} />
             <Route path='/bookChef' exact component={BookChef} />
@@ -42,6 +45,9 @@ function App() {
             <Route path='/confirmSignUp/:email' exact component={ConfirmSignUp} />
             <Route path='/lexbot' exact component={Lexbot} />
             <Route path='/custProfile' exact component={CustomerProfile} />
+            <Route path='/applyJob' exact component={ApplyNow} />
+            <Route path='/reviewBooking' exact component={ReviewBooking} />
+            {/* <Route path='/test' exact component={Test} /> */}
           </Switch>
           <ChatPopper />
         </Container>

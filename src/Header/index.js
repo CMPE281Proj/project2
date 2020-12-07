@@ -12,6 +12,7 @@ import { DesktopAppBar } from './Desktop/DesktopAppBar';
 import { DesktopMenuBar } from './Desktop/DesktopMenuBar';
 import { MobileAppBar } from './Mobile/MobileAppBar';
 import { MobileMenuBar } from './Mobile/MobileMenuBar';
+import LocalDiningIcon from '@material-ui/icons/LocalDining';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -89,6 +90,7 @@ export const Header = (props) => {
             aria-label="open drawer"
           >
             {/* <MenuIcon /> */}
+            <LocalDiningIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             <Link to='/' style={{ textDecoration: 'none', display: 'block', color: "inherit" }}> Find My Chef</Link>

@@ -18,6 +18,7 @@ export const GetCustomerBookingInfo = (event) => {
               Slot: element.Slot ? element.Slot.L[0].S : '',
               CustName: element.CustName ? element.CustName.S : '',
               PaymentStatus: element.PaymentStatus ? element.PaymentStatus.S : 'Confirmed',
+              OrderStatus: element.OrderStatus ? element.OrderStatus.S : 'Confirmed',
               Image: element.ChefEmail ? 'http://d1q6lc2rasmdf5.cloudfront.net/ChefPictures/ChefProfilePics/' + element.ChefEmail.S + '.jpg' : 'https://d1q6lc2rasmdf5.cloudfront.net/CustomerPictures/ProfilePicture.jpg'
             });
           });

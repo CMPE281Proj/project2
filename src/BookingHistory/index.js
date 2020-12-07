@@ -9,11 +9,16 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Rating from '@material-ui/lab/Rating';
 import UpdateRatingReview from './UpdateRatingReview';
+import CancelIcon from '@material-ui/icons/Cancel';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import StarRateIcon from '@material-ui/icons/StarRate';
 
 import '../CustomerProfile/style.css';
+import UpdateBookingOrder from './UpdateBookingOrder';
 
 const BookingHistory = (props) => {
   const [open, setOpen] = React.useState(false);
+  const [openCancelDialog, setopenCancelDialog] = React.useState(false);
   const [rating, setRating] = React.useState(0);
   const [review, setReview] = React.useState("");
   const [id, setId] = React.useState(0);
@@ -25,6 +30,7 @@ const BookingHistory = (props) => {
 
   const handleClose = () => {
     setOpen(false);
+    setopenCancelDialog(false);
   };
 
   const columns = [
@@ -45,14 +51,25 @@ const BookingHistory = (props) => {
       width: 80,
     },
     { field: 'TotalPrice', headerName: 'Total Price', width: 100 },
-    { field: 'PaymentStatus', headerName: 'Payment Status', width: 100 },
+    { field: 'PaymentStatus', headerName: 'Payment Status', width: 150 },
+    { field: 'OrderStatus', headerName: 'Order Status', width: 150 },
     {
       field: 'NumberOfHoursBooked',
-      headerName: 'Review and Rate',
+      headerName: 'Review/Rate',
       width: 150,
       renderCell: (params) => (
-        <Button color="primary" variant="contained" size="small" onClick={() => handleClickOpen(params.getValue("BookingId"))}>
-          Rate
+        <Button color="primary" size="small" onClick={() => handleClickOpen(params.getValue("BookingId"))}>
+          <StarRateIcon />
+        </Button>
+      ),
+    },
+    {
+      field: 'Cancel',
+      headerName: 'Cancel',
+      width: 150,
+      renderCell: (params) => (
+        <Button color='secondary' size="small" onClick={() => handleCancel(params.getValue("BookingId"))}>
+          <CancelIcon />
         </Button>
       ),
     },
@@ -84,6 +101,23 @@ const BookingHistory = (props) => {
     })
       .catch(function (error) {
         console.log('UpdateRatingReview error', error);
+      });
+  }
+
+  const handleCancel = (bookingId) => {
+    setId(bookingId);
+    setopenCancelDialog(true);
+  };
+
+  const updateOrderStatus = () => {
+    const q1 = {};
+    q1.id = Number(id);
+    UpdateBookingOrder(q1).then(function (response) {
+      console.log('Cancellation successful', response.bookingInfo);
+      setopenCancelDialog(false);
+    })
+      .catch(function (error) {
+        console.log('cancellation error', error);
       });
   }
   return (
@@ -120,6 +154,28 @@ const BookingHistory = (props) => {
             <Button onClick={onSubmitRatings} color="primary" variant="contained">
               Submit
               </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+      <div>
+        <Dialog
+          open={openCancelDialog}
+          onClose={handleClose}
+          aria-labelledby="responsive-dialog-title"
+        >
+          <DialogTitle id="responsive-dialog-title">{`Are you sure you want to cancel the reservation, ${id} ?`}</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              This will cancel the reservation.
+          </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button autoFocus onClick={handleClose} color="primary">
+              No
+            </Button>
+            <Button onClick={updateOrderStatus} color="primary" autoFocus>
+              Yes
+            </Button>
           </DialogActions>
         </Dialog>
       </div>
