@@ -14,9 +14,10 @@ import Typography from '@material-ui/core/Typography';
 import { useStyles } from './style'
 import Amplify, { Auth } from 'aws-amplify';
 import awsconfig from '../aws-exports';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import ChefDetailsAPI from '../ChefDetails/ChefDetailsAPI';
 
 
 Amplify.configure(awsconfig)
@@ -32,19 +33,35 @@ const SignIn = (props) => {
   const history = useHistory();
   const [open, setOpen] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
+  const [isChef, setIsChef] = React.useState(false);
+  const location = useLocation();
+
+  const [chefDetails, setChefDetails] = React.useState([]);
+
+  // const handleChange = (event) => {
+  //   setIsChef(event.target.checked);
+  // };
 
   const login = async (e) => {
     e.preventDefault();
     try {
       const user = await Auth.signIn(emailid, password);
       console.log(user);
-      sessionStorage.setItem("userDetails", JSON.stringify({ userEmailId: emailid }));
+      sessionStorage.setItem("userDetails", JSON.stringify({ userEmailId: emailid, ischef: isChef }));
       props.onIsLoggedIn(true);
-      if (sessionStorage.getItem("chefDetails")) {
+
+      if (isChef) {
+        // props.chefDetails()
+        const chefId = emailid;
+        history.push("/chefProfile/" + chefId);
+      }
+      else if (sessionStorage.getItem("chefDetails")) {
         history.push("bookChef/");
       }
-      else
+      else {
         history.push("custProfile/");
+      }
+
     } catch (error) {
       setErrorMessage(error.message);
 
@@ -100,6 +117,13 @@ const SignIn = (props) => {
               type='password'
               id='password'
               onChange={(e, password) => setPassword(e.target.value)}
+            />
+            <FormControlLabel
+              value="Chef"
+              control={<Checkbox color="primary" />}
+              label="Chef"
+              labelPlacement="end"
+              onChange={(e) => setIsChef(e.target.checked)}
             />
             {/* <FormControlLabel
               control={<Checkbox value='remember' color='primary' />}

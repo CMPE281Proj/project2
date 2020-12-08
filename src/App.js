@@ -20,6 +20,7 @@ import ChatPopper from './ChatPopper';
 import Test from './Test';
 import ApplyNow from './ApplyNow';
 import ReviewBooking from './BookChef/ReviewBooking';
+import ChefBookingHistory from './ChefBookingHistory';
 
 Amplify.configure(awsconfig);
 
@@ -47,6 +48,7 @@ function App() {
             <Route path='/custProfile' exact component={CustomerProfile} />
             <Route path='/applyJob' exact component={ApplyNow} />
             <Route path='/reviewBooking' exact component={ReviewBooking} />
+            <Route path='/chefBooking' exact component={ChefBookingHistory} />
             {/* <Route path='/test' exact component={Test} /> */}
           </Switch>
           <ChatPopper />

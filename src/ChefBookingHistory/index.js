@@ -1,109 +1,187 @@
 import React, { useEffect } from 'react';
-import TextField from '@material-ui/core/TextField';
+import { DataGrid } from '@material-ui/data-grid';
 import Button from '@material-ui/core/Button';
-import SearchIcon from '@material-ui/icons/Search';
-import IconButton from '@material-ui/core/IconButton';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from '@material-ui/core/TextField';
+import Rating from '@material-ui/lab/Rating';
+// import UpdateRatingReview from './UpdateRatingReview';
+import CancelIcon from '@material-ui/icons/Cancel';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import StarRateIcon from '@material-ui/icons/StarRate';
+import GetChefBookingDetails from './GetChefBookingDetails';
+import '../CustomerProfile/style.css';
+// import UpdateBookingOrder from './UpdateBookingOrder';
 
-import GetDepartmentDetails from './GetDepartmentDetails';
-import CommonGrid from '../CommonGrid';
-// import AddEdit from './AddEdit';
-import editIcon from '@material-ui/icons/Edit';
+const ChefBookingHistory = (props) => {
+  const [open, setOpen] = React.useState(false);
+  const [openCancelDialog, setopenCancelDialog] = React.useState(false);
+  const [rating, setRating] = React.useState(0);
+  const [review, setReview] = React.useState("");
+  const [id, setId] = React.useState(0);
+  const [emailid, setEmailid] = React.useState(JSON.parse(sessionStorage.getItem('userDetails')).userEmailId);
 
-export const ChefBookingHistory = (props) => {
+  const handleClickOpen = (bookingId) => {
+    setOpen(true);
+    setId(bookingId);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setopenCancelDialog(false);
+  };
+
   const columns = [
     {
-      field: 'dept_no',
-      headerName: 'ID',
-      width: 180,
+      field: 'BookingId',
+      headerName: 'Booking Id',
+      width: 140,
     },
-    { field: 'dept_name', headerName: 'Name', width: 200 },
-    { field: 'hod_id', headerName: 'HOD ID', width: 180 },
-    { field: 'hod_name', headerName: 'HOD Name', width: 200 },
-    { field: 'Total_Emp', headerName: 'Total Employees', width: 180 },
+    { field: 'CustName', headerName: 'Customer Name', width: 180 },
+    // { field: 'ChefEmail', headerName: 'Chef Email', width: 180 },
+    { field: 'Date', headerName: 'Date', width: 180 },
+
+    { field: 'Slot', headerName: 'Slot', width: 180 },
+
+    {
+      field: 'NumberOfHoursBooked',
+      headerName: 'Hours',
+      width: 80,
+    },
+    { field: 'TotalPrice', headerName: 'Total Price', width: 100 },
+    { field: 'PaymentStatus', headerName: 'Payment Status', width: 150 },
+    { field: 'OrderStatus', headerName: 'Order Status', width: 150 },
+    // {
+    //   field: 'NumberOfHoursBooked',
+    //   headerName: 'Review/Rate',
+    //   width: 150,
+    //   renderCell: (params) => (
+    //     <Button color="primary" size="small" onClick={() => handleClickOpen(params.getValue("BookingId"))}>
+    //       <StarRateIcon />
+    //     </Button>
+    //   ),
+    // },
+    // {
+    //   field: 'Cancel',
+    //   headerName: 'Cancel',
+    //   width: 150,
+    //   renderCell: (params) => (
+    //     <Button color='secondary' size="small" onClick={() => handleCancel(params.getValue("BookingId"))}>
+    //       <CancelIcon />
+    //     </Button>
+    //   ),
+    // },
   ];
 
-  const [deptDetails, setdeptDetails] = React.useState([]);
-  // const [page, setPage] = React.useState(1);
-  // const [deptIdId, setEmpId] = React.useState("");
-  // const [open, setOpen] = React.useState(false);
-
-  // const [rowDetails, setRowDetails] = React.useState({});
-
-  // const handleClickOpen = (details) => {
-  //   setOpen(true);
-  //   if (details.empNumberPk)
-  //     setRowDetails(details);
-  // };
-  // const handleClose = () => {
-  //   setOpen(false);
-  //   setRowDetails({});
-  // };
+  const [bookingDetails, setBookingDetails] = React.useState([]);
 
   useEffect(() => {
-    getDeptDetails();
-  });
+    // console.log('chef id ' + props.chefId);
+    if (emailid) {
+      GetChefBookingDetails(emailid).then(function (response) {
+        console.log("GET CHEF BOOKING DETAILS", response.bookingInfo);
+        setBookingDetails(response);
+      })
+        .catch(function (error) {
+          console.log('GET CHEF BOOKING DETAILS', error);
+          setBookingDetails([]);
+        });
+    }
+  }, [emailid]);
 
-  const getDeptDetails = () => {
-    GetDepartmentDetails().then(function (response) {
-      console.log("Get Dept details", response);
-      setdeptDetails(response);
-    })
-      .catch(function (error) {
-        console.log('get dept details error', error);
-        setdeptDetails([]);
-      });
-  }
-  // const handlePageChange = (params) => {
-  //   setPage(params.page);
+  // const onSubmitRatings = () => {
+  //   const query = {};
+  //   query.id = Number(id);
+  //   query.rating = Number(rating);
+  //   query.review = review;
+  //   UpdateRatingReview(query).then(function (response) {
+  //     console.log("UpdateRatingReview", response.bookingInfo);
+  //     setOpen(false);
+  //   })
+  //     .catch(function (error) {
+  //       console.log('UpdateRatingReview error', error);
+  //     });
+  // }
+
+  // const handleCancel = (bookingId) => {
+  //   setId(bookingId);
+  //   setopenCancelDialog(true);
   // };
 
-  // const onSearch = (id) => {
-  //   if (id !== '') {
-  //     SearchEmployee(id).then(function (response) {
-  //       console.log("SearchEmployee", response.bookingInfo);
-  //       setEmployeeDetails(response);
-  //     })
-  //       .catch(function (error) {
-  //         console.log('SearchEmployee error', error);
-  //         setEmployeeDetails([]);
-  //       });
-  //   } else {
-  //     getEmployeeList(1);
-  //   }
-  // };
-
+  // const updateOrderStatus = () => {
+  //   const q1 = {};
+  //   q1.id = Number(id);
+  //   UpdateBookingOrder(q1).then(function (response) {
+  //     console.log('Cancellation successful', response.bookingInfo);
+  //     setopenCancelDialog(false);
+  //   })
+  //     .catch(function (error) {
+  //       console.log('cancellation error', error);
+  //     });
+  // }
   return (
-    <div className="mainContainerWrap">
-      <div className="gridOperations">
-        <div>
-          {/* <TextField
-            label='Seach Employee'
-            // className={classes.textField}
-            value={Id}
-            onChange={(event) => setEmpId(event.target.value)}
-            InputLabelProps={{
-              style: { color: '#7c7979', fontSize: '1.2em' },
-              shrink: true
-            }}
-          /> */}
-          {/* <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => onSearch(empId)}>
-            <SearchIcon />
-          </IconButton> */}
-        </div>
-        {/* <Button onClick={handleClickOpen} color="primary" variant="contained" size="small">
-          Add New Employee
-        </Button> */}
+    <div style={{ height: 400, width: '100%' }}>
+      <DataGrid rows={bookingDetails} columns={columns} pageSize={5} />
+
+      <div>
+        {/* <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+          <DialogTitle id="form-dialog-title">Rate Chef</DialogTitle>
+          <DialogContent>
+            <Rating
+              name='simple-controlled'
+              value={rating}
+              onChange={(event, newValue) => {
+                setRating(newValue);
+              }}
+              size='large'
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Add Review"
+              // type="email"
+              value={review}
+              fullWidth
+              onChange={(e) => setReview(e.target.value)}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
+              </Button>
+            <Button onClick={onSubmitRatings} color="primary" variant="contained">
+              Submit
+              </Button>
+          </DialogActions>
+        </Dialog> */}
       </div>
-
-
-      <div style={{ height: 400, width: '100%', marginTop: '30px' }}>
-        <CommonGrid
-          rows={deptDetails}
-          columns={columns}
-          rowCount={deptDetails.length}
-        />
+      <div>
+        <Dialog
+          open={openCancelDialog}
+          onClose={handleClose}
+          aria-labelledby="responsive-dialog-title"
+        >
+          <DialogTitle id="responsive-dialog-title">{`Are you sure you want to cancel the reservation, ${id} ?`}</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              This will cancel the reservation.
+          </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button autoFocus onClick={handleClose} color="primary">
+              No
+            </Button>
+            {/* <Button onClick={updateOrderStatus} color="primary" autoFocus>
+              Yes
+            </Button> */}
+          </DialogActions>
+        </Dialog>
       </div>
     </div>
   );
 }
+
 export default ChefBookingHistory;
