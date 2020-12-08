@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 export const DesktopAppBar = (props) => {
   const classes = useStyles();
-  const loggedInUser = props.isLoggedIn;
+  // const loggedInUser = props.isLoggedIn;
+  const loggedInUser = JSON.parse(sessionStorage.getItem('userDetails')) &&  JSON.parse(sessionStorage.getItem('userDetails')).userEmailId ? true : false;
   const ischef = JSON.parse(sessionStorage.getItem('userDetails')) ? JSON.parse(sessionStorage.getItem('userDetails')).ischef : false;
   // const isChef = userDetails.isChef;
 
