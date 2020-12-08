@@ -8,7 +8,7 @@ import { useStyles } from './style';
 import Rating from '@material-ui/lab/Rating';
 
 export const ChefProfile = (props) => {
-
+  const ischef = JSON.parse(sessionStorage.getItem('userDetails')) ? JSON.parse(sessionStorage.getItem('userDetails')).ischef : false;
   const classes = useStyles();
   const getpathQuery = (chefId) => {
     const pathQuery = "bookChef/" + chefId;
@@ -19,6 +19,7 @@ export const ChefProfile = (props) => {
 
   const chefDetails = props.chefDetails;
   const loggedInUser = sessionStorage.getItem("userDetails") ? true : false;
+  const pathQ = loggedInUser ? '/bookChef' : '/signIn';
 
   return (
     <Container>
@@ -42,23 +43,20 @@ export const ChefProfile = (props) => {
             size="medium"
           />
           <span className={classes.chefProfileInfoReviewCount}>({chefDetails.TotalNumberOfCustomersReviewed})</span>
-          <div className={classes.chefProfileInfoButtons}>
+          <div show={!ischef} className={classes.chefProfileInfoButtons}>
             {/* <span className={classes.chefProfileFav}>Add To Favourites</span> */}
             {/* <Link to={getpathQuery(chefDetails && chefDetails.Email)} style={{ textDecoration: 'none', display: 'block', color: "inherit" }}>
               <Button variant="contained" color="primary">
                 Book a Slot
               </Button>
             </Link> */}
-            {loggedInUser ?
-              <Link to="/bookChef" style={{ textDecoration: 'none', display: 'block', color: "inherit" }} onClick={sessionStorage.setItem("chefDetails", JSON.stringify(chefDetails))}>
+
+            {ischef ?
+              null :
+              <Link to={pathQ} style={{ textDecoration: 'none', display: 'block', color: "inherit" }} onClick={sessionStorage.setItem("chefDetails", JSON.stringify(chefDetails))}>
                 <Button variant="contained" color="primary">
                   Book a Slot
                 </Button>
-              </Link> :
-              <Link to="/signIn" style={{ textDecoration: 'none', display: 'block', color: "inherit" }} onClick={sessionStorage.setItem("chefDetails", JSON.stringify(chefDetails))}>
-                <Button variant="contained" color="primary">
-                  Book a Slot
-              </Button>
               </Link>}
           </div>
         </Grid>
