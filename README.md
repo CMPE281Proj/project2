@@ -1,4 +1,11 @@
-![image](https://user-images.githubusercontent.com/2658837/101580117-2d6a9b80-398f-11eb-9e7f-0781b233230f.png)
+# App link: https://www.findchef.xyz/
+# Professor : Sanjay Garje
+
+# Team Members : 
+- Prajakta Joshi
+- Mamatha Guntu
+- Umashankar kumar 
+- Srujana Koripalli
 
 ![image](https://user-images.githubusercontent.com/2658837/101580326-3c514e00-398f-11eb-98d6-41f02720dca8.png)
 
@@ -17,7 +24,7 @@
 ![image](https://user-images.githubusercontent.com/2658837/101582332-ca2d3900-398f-11eb-9d66-deae97fad48b.png)
 ![image](https://user-images.githubusercontent.com/2658837/101582780-e8933480-398f-11eb-999a-273b9f24b79b.png)
 
-Chef Search Page:
+# Chef Search Page:
 ![image](https://user-images.githubusercontent.com/2658837/101582969-f6e15080-398f-11eb-94d9-d7a5561ecee8.png)
 
 # Chef Profile Page with his/her availability calendar: 
