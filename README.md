@@ -20,12 +20,18 @@ Home Page:
 Chef Search Page:
 ![image](https://user-images.githubusercontent.com/2658837/101582969-f6e15080-398f-11eb-94d9-d7a5561ecee8.png)
 
-Chef Profile Page: 
+#Chef Profile Page with his/her availability calendar: 
 ![image](https://user-images.githubusercontent.com/2658837/101583209-08c2f380-3990-11eb-9941-d68e8e1f97ae.png)
 
 chef Reviews visible in the same page 
 ![image](https://user-images.githubusercontent.com/2658837/101583309-1e381d80-3990-11eb-8635-4e949d72c999.png)
 
+#Click book slot in the chef profile page 
+![image](https://user-images.githubusercontent.com/2658837/101583209-08c2f380-3990-11eb-9941-d68e8e1f97ae.png)
+
+#Since the user is not signed in yet ,  the user should sign in first.
 ![image](https://user-images.githubusercontent.com/2658837/101583374-3871fb80-3990-11eb-9c08-f128ed86ac11.png)
 
 ![image](https://user-images.githubusercontent.com/2658837/101583417-50497f80-3990-11eb-8e9c-6b4292a3e57d.png)
+
+
