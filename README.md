@@ -1,7 +1,7 @@
 # App link: https://www.findchef.xyz/
 # Professor : Sanjay Garje
 
-# Team Members : 
+# Team JARVIS : 
 - Prajakta Joshi
 - Mamatha Guntu
 - Umashankar kumar 
