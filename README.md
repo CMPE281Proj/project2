@@ -59,6 +59,9 @@
 # In the customer profile , check that the transaction is mentioned in the list
 ![image](https://user-images.githubusercontent.com/2658837/101588292-e682a300-399a-11eb-92ce-2864cdc8fefe.png)
 
+# User will receive confirmation mail received when the user reserves a chef
+![image](https://user-images.githubusercontent.com/2658837/101589285-fe5b2680-399c-11eb-85ac-924e8c2618de.png)
+
 # Reserve a slot through chat bot (created using lex)
 ![image](https://user-images.githubusercontent.com/2658837/101588346-0f0a9d00-399b-11eb-8a8f-17f3a84f509c.png)
 
@@ -71,6 +74,9 @@
 # View the reservation list of the Chef 
 
 ![image](https://user-images.githubusercontent.com/2658837/101588723-da4b1580-399b-11eb-9b0b-c6dde9717361.png)
+
+
+
 
 
 
