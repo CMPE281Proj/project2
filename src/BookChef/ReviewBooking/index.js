@@ -77,6 +77,8 @@ const ReviewBooking = (props) => {
     customerBookings.slot = [bookingInfo.slot];
     customerBookings.totalPrice = totalPrice;
     customerBookings.custEmail = userDetails.userEmailId;
+    customerBookings.paymentStatus = 'Confirmed';
+    customerBookings.orderStatus = 'Confirmed'
     PutCustomerBookings(customerBookings).then(function (response) {
       console.log('PutCustomerBookings', response);
       UpdateChefTableSlot({ email: bookingInfo.chefEmail, updatedChefSlots: bookingInfo.updatedChefSlots }).then(function (response) {
