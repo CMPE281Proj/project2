@@ -63,7 +63,7 @@ const featuredPosts = [
     image: 'http://d1q6lc2rasmdf5.cloudfront.net/pics/3.jpg',
     imageText: 'Image Text',
     linkText: '/applyJob',
-    linkVal: 'Apply Now!'
+    linkVal: 'Coming Soon!'
   },
   {
     title: 'Spice up the kitchen !',
